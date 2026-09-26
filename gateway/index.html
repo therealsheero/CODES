@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title data-i18n="choose_state">
+Select State
+</title>
+
+<link rel="icon" href="/assets/favicon.svg?v=2">
+<link rel="stylesheet" href="/css/style.css?v=15">
+
+<style>
+
+.state-container {
+    max-width: 600px;
+    margin: 80px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.state-container h2 {
+    color:#0b2e6b;
+    margin-bottom:20px;
+}
+
+.state-container p {
+    font-size:18px;
+}
+
+select {
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    font-size:18px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.language-selector {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.language-selector label {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.language-selector select {
+    margin-top: 0;
+}
+
+.state-container > select {
+    margin-top: 20px;
+}
+
+button {
+    margin-top:25px;
+    padding:12px 40px;
+    font-size:18px;
+    background:#0b2e6b;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#17408b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="gov-header">
+
+  <div class="gov-left">
+    <img src="/assets/india-emblem.png">
+  </div>
+
+  <div class="gov-center">
+    <h1 data-i18n="header_title">
+    Government of India
+    </h1>
+
+
+<p data-i18n="header_subtitle">
+Select State or Union Territory
+</p>
+
+
+  </div>
+
+  <div class="gov-right">
+    <img src="/assets/Aadhaar_Small.png">
+  </div>
+
+</header>
+
+<div class="state-container">
+
+
+<div class="language-selector">
+
+    <label for="languageSelect" data-i18n="choose_language">
+        Choose Language
+    </label>
+
+    <select id="languageSelect">
+
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="bn">বাংলা</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="gu">ગુજરાતી</option>
+        <option value="ml">മലയാളം</option>
+        <option value="or">ଓଡ଼ିଆ</option>
+        <option value="mr">मराठी</option>
+        <option value="as">অসমীয়া</option>
+
+    </select>
+
+</div>
+
+<h2 data-i18n="choose_state">
+    Choose Your State / Union Territory
+</h2>
+
+<p data-i18n="description">
+    You will be redirected to your respective Token Booking Portal
+</p>
+
+<select id="stateSelect">
+
+    <option value="" data-i18n="select_state">
+        -- Select State or Union Territory --
+    </option>
+
+    <option value="AN" data-i18n="state_an">
+        Andaman & Nicobar
+    </option>
+
+    <option value="AP" data-i18n="state_ap">
+        Andhra Pradesh
+    </option>
+
+    <option value="AR" data-i18n="state_ar">
+        Arunachal Pradesh
+    </option>
+
+    <option value="AS" data-i18n="state_as">
+        Assam
+    </option>
+
+    <option value="BIH" data-i18n="state_bih">
+        Bihar
+    </option>
+
+    <option value="CD" data-i18n="state_cd">
+        Chandigarh
+    </option>
+
+    <option value="CG" data-i18n="state_cg">
+        Chhattisgarh
+    </option>
+
+    <option value="DDDNH" data-i18n="state_dddnh">
+        Dadra & Nagar Haveli & Daman and Diu
+    </option>
+
+    <option value="DL" data-i18n="state_dl">
+        Delhi
+    </option>
+
+    <option value="GOA" data-i18n="state_goa">
+        Goa
+    </option>
+
+    <option value="GJ" data-i18n="state_gj">
+        Gujarat
+    </option>
+
+    <option value="HR" data-i18n="state_hr">
+        Haryana
+    </option>
+
+    <option value="HP" data-i18n="state_hp">
+        Himachal Pradesh
+    </option>
+
+    <option value="JHK" data-i18n="state_jhk">
+        Jharkhand
+    </option>
+
+    <option value="JK" data-i18n="state_jk">
+        Jammu & Kashmir
+    </option>
+
+    <option value="KRN" data-i18n="state_krn">
+        Karnataka
+    </option>
+
+    <option value="KER" data-i18n="state_ker">
+        Kerala
+    </option>
+
+    <option value="LAD" data-i18n="state_lad">
+        Ladakh
+    </option>
+
+    <option value="LKS" data-i18n="state_lks">
+        Lakshadweep
+    </option>
+
+    <option value="MP" data-i18n="state_mp">
+        Madhya Pradesh
+    </option>
+
+    <option value="MH" data-i18n="state_mh">
+        Maharashtra
+    </option>
+
+    <option value="ME" data-i18n="state_me">
+        Meghalaya
+    </option>
+
+    <option value="MN" data-i18n="state_mn">
+        Manipur
+    </option>
+
+    <option value="MZ" data-i18n="state_mz">
+        Mizoram
+    </option>
+
+    <option value="NG" data-i18n="state_ng">
+        Nagaland
+    </option>
+
+    <option value="ODSH" data-i18n="state_odsh">
+        Odisha
+    </option>
+
+    <option value="PD" data-i18n="state_pd">
+        Puducherry
+    </option>
+
+    <option value="PB" data-i18n="state_pb">
+        Punjab
+    </option>
+
+    <option value="SK" data-i18n="state_sk">
+        Sikkim
+    </option>
+
+    <option value="TN" data-i18n="state_tn">
+        Tamil Nadu
+    </option>
+
+    <option value="TELANGANA" data-i18n="state_telangana">
+        Telangana
+    </option>
+
+    <option value="TR" data-i18n="state_tr">
+        Tripura
+    </option>
+
+    <option value="UP" data-i18n="state_up">
+        Uttar Pradesh
+    </option>
+
+    <option value="WB" data-i18n="state_wb">
+        West Bengal
+    </option>
+
+</select>
+
+<button onclick="redirectUser()" data-i18n="continue">
+    Continue
+</button>
+
+</div>
+
+<script>
+
+function redirectUser(){
+
+    const state =
+    document.getElementById("stateSelect").value;
+
+    const lang =
+    document.getElementById("languageSelect").value;
+
+    localStorage.setItem(
+        "selected_lang",
+        lang
+    );
+
+    localStorage.setItem(
+        "app_lang",
+        lang
+    );
+
+    if(!state){
+
+        alert(
+            window.t(
+                "error",
+                "Please select your State or Union Territory"
+            )
+        );
+
+        return;
+    }
+
+    if(state === "UP"){
+
+        window.location.href =
+        "/lucknow/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "ODSH"){
+
+        window.location.href =
+        "/odisha/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "BIH"){
+
+        window.location.href =
+        "/patna/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "JHK"){
+
+        window.location.href =
+        "/ranchi/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "MH" || state === "GOA"){
+
+        window.location.href =
+        "/mumbai/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "WB"){
+
+        window.location.href =
+        "/kolkata/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "LKS" || state === "KER"){
+
+        window.location.href =
+        "/kerala/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "TN" || state === "PD" || state === "KRN"){
+
+        window.location.href =
+        "/bengaluru/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(
+        state === "AS" ||
+        state === "AR" ||
+        state === "MN" ||
+        state === "ME" ||
+        state === "MZ" ||
+        state === "NG" ||
+        state === "SK" ||
+        state === "TR"
+    ){
+
+        window.location.href =
+        "/guwahati/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(state === "GJ" || state === "DDDNH"){
+
+        window.location.href =
+        "/gujarat/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else if(
+        state === "DL"
+    ){
+
+        window.location.href =
+        "https://uidairotoken.com/beta/";
+
+    }
+
+    else if(
+        state === "PB" ||
+        state === "HR" ||
+        state === "HP" ||
+        state === "JK" ||
+        state === "CD" ||
+        state === "LAD"
+    ){
+
+        window.location.href =
+        "/chandigarh/?lang=" + encodeURIComponent(lang);
+
+    }
+    else if(
+        state === "MP"
+    ){
+
+        window.location.href =
+        "/bhopal/?lang=" + encodeURIComponent(lang);
+
+    }
+
+    else{
+
+        window.location.href =
+        "/hyderabad/?lang=" + encodeURIComponent(lang);
+
+    }
+
+}
+
+</script>
+
+<script src="/js/i18n.js"></script>
+
+</body>
+
+</html>
