@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UIDAI CEO Monitor Dashboard</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="icon" href="./assets/favicon.svg">
+</head>
+<body>
+  <div id="dashboardApp" style="display: none;">
+    <!-- Gov Header -->
+    <header class="gov-header">
+      <div class="gov-left">
+        <img src="./assets/india-emblem.png" alt="India Emblem">
+      </div>
+      <div class="gov-center">
+        <h1>UIDAI — Token Management System</h1>
+        <p>Unique Identification Authority of India</p>
+      </div>
+      <div class="gov-right">
+        <button id="logoutBtn" style="background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: auto; margin: 0;">Logout</button>
+        <img src="./assets/Aadhaar_Small.png" alt="Aadhaar Logo">
+      </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-control">
+  <i data-lucide="map-pin"></i>
+      <select id="filterRegion">
+  <option value="all">All Regions</option>
+  <option value="bengaluru">RO Bengaluru</option>
+  <option value="chandigarh">RO Chandigarh</option>
+  <option value="delhi">RO Delhi</option>
+  <option value="guwahati">RO Guwahati</option>
+  <option value="hyderabad">RO Hyderabad</option>
+  <option value="lucknow">RO Lucknow</option>
+  <option value="mumbai">RO Mumbai</option>
+  <option value="ranchi">RO Ranchi</option>
+
+  <option value="bhopal">SO Bhopal</option>
+  <option value="gujarat">SO Ahmedabad</option>
+  <option value="kerala">SO Thiruvananthapuram</option>
+  <option value="kolkata">SO Kolkata</option>
+  <option value="odisha">SO Bhubaneswar</option>
+  <option value="patna">SO Patna</option>
+</select>
+      <div class="filter-control">
+  <i data-lucide="calendar"></i>
+  <input type="date" id="filterFrom">
+</div>
+      <div class="filter-control">
+  <i data-lucide="calendar-days"></i>
+  <input type="date" id="filterTo">
+</div>
+      <button id="refreshBtn" class="refresh-btn">
+  <i data-lucide="refresh-cw"></i>
+  <span>Refresh</span>
+</button>
+      <span id="lastUpdated"></span>
+    </div>
+    </div>
+
+    <!-- KPI Section -->
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--kpi-color: #2563eb;">
+  <div class="kpi-icon">
+    <i data-lucide="ticket"></i>
+  </div>
+  <span class="kpi-value" id="kpiTotalTokens">0</span>
+  <span class="kpi-label">Total Tokens</span>
+</div>
+
+
+      <div class="kpi-card" style="--kpi-color: #16a34a;">
+  <div class="kpi-icon">
+    <i data-lucide="users"></i>
+  </div>
+  <span class="kpi-value" id="kpiTotalVisits">0</span>
+  <span class="kpi-label">Total Visits</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #ef4444;">
+  <div class="kpi-icon">
+    <i data-lucide="user-round-x"></i>
+  </div>
+  <span class="kpi-value" id="kpiNotVisited">0</span>
+  <span class="kpi-label">Not Visited</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #7c3aed;">
+  <div class="kpi-icon">
+    <i data-lucide="gauge"></i>
+  </div>
+  <span class="kpi-value" id="kpiVisitRate">0%</span>
+  <span class="kpi-label">Visit Rate</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #0d9488;">
+  <div class="kpi-icon">
+    <i data-lucide="calendar-check"></i>
+  </div>
+  <span class="kpi-value" id="kpiAppointment">0</span>
+  <span class="kpi-label">Appointments</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #f59e0b;">
+  <div class="kpi-icon">
+    <i data-lucide="person-standing"></i>
+  </div>
+  <span class="kpi-value" id="kpiWalkin">0</span>
+  <span class="kpi-label">Walk-ins</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #3b82f6;">
+  <div class="kpi-icon">
+    <i data-lucide="user-round"></i>
+  </div>
+  <span class="kpi-value" id="kpiMale">0</span>
+  <span class="kpi-label">Male</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #ec4899;">
+  <div class="kpi-icon">
+    <i data-lucide="user-round"></i>
+  </div>
+  <span class="kpi-value" id="kpiFemale">0</span>
+  <span class="kpi-label">Female</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #6366f1;">
+  <div class="kpi-icon">
+    <i data-lucide="users-round"></i>
+  </div>
+  <span class="kpi-value" id="kpiOthers">0</span>
+  <span class="kpi-label">Others (PT/RT/PwD)</span>
+</div>
+      <div class="kpi-card" style="--kpi-color: #d97706;">
+  <div class="kpi-icon">
+    <i data-lucide="clock-3"></i>
+  </div>
+  <span class="kpi-value" id="kpiBusiestHour">-</span>
+  <span class="kpi-label">Busiest Hour</span>
+</div>
+    </div>
+
+    <!-- Charts Row 1 -->
+    <div class="charts-row">
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="briefcase-business"></i>
+  </span>
+  <span>Service Distribution</span>
+</h3>
+        <div class="chart-container">
+          <canvas id="serviceChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="shuffle"></i>
+  </span>
+  <span>Mode Split</span>
+</h3>
+        <div class="chart-container">
+          <canvas id="modeChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="clock-3"></i>
+  </span>
+  <span>Hourly Distribution</span>
+</h3>
+        <div class="chart-container">
+          <canvas id="hourlyChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="charts-row">
+      <div class="chart-box full-width">
+        <div class="heatmap-heading">
+    <h3 class="section-title">
+        <span class="section-icon">
+            <i data-lucide="map"></i>
+        </span>
+        <span>Token Distribution Across India</span>
+    </h3>
+
+    <div class="heatmap-filters">
+
+        <div class="heatmap-filter">
+            <label for="heatmapVisitStatus">Visit Status</label>
+            <select id="heatmapVisitStatus">
+                <option value="all">All</option>
+                <option value="visited">Visited</option>
+                <option value="not_visited">Not Visited</option>
+            </select>
+        </div>
+
+        <div class="heatmap-filter">
+            <label for="heatmapEntryStatus">Entry Status</label>
+            <select id="heatmapEntryStatus">
+                <option value="all">All</option>
+                <option value="entered">Entered</option>
+                <option value="not_entered">Not Entered</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<div id="mapContainer"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="charts-row two-col">
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="users"></i>
+  </span>
+  <span>Age-Gender Demographics</span>
+</h3>
+        <div class="chart-container medium">
+          <canvas id="demographicChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-box">
+       <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="trending-up"></i>
+  </span>
+  <span>Daily Token Trend</span>
+</h3>
+        <div class="chart-container medium">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Charts Row 4 -->
+    <div class="charts-row">
+      <div class="chart-box full-width">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="chart-no-axes-combined"></i>
+  </span>
+  <span>Visit Analysis (Monthly)</span>
+</h3>
+        <div class="chart-container medium">
+          <canvas id="visitChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tables Row -->
+    <div class="charts-row two-col">
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="map-pin"></i>
+  </span>
+  <span>District Breakdown</span>
+</h3>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>District</th>
+                <th>Tokens</th>
+                <th>Share%</th>
+              </tr>
+            </thead>
+            <tbody id="districtTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="chart-box">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="calendar-clock"></i>
+  </span>
+  <span>Today's Slot Status</span>
+</h3>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Appt Total</th>
+                <th>Appt Booked</th>
+                <th>Walk-in Total</th>
+                <th>Walk-in Booked</th>
+                <th>% Utilized</th>
+              </tr>
+            </thead>
+            <tbody id="slotTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+              <!-- Charts Row 3 -->
+    <div class="charts-row">
+      <div class="chart-box full-width">
+        <h3 class="section-title">
+  <span class="section-icon">
+    <i data-lucide="bar-chart-3"></i>
+  </span>
+  <span>Region Comparison</span>
+</h3>
+        <div class="chart-container tall">
+          <canvas id="regionCompareChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="dashboard-footer">
+      <button id="exportPdfBtn" class="export-pdf-btn">
+  <i data-lucide="file-down"></i>
+  <span>Export Dashboard as PDF</span>
+</button>
+      <p>UIDAI CEO Monitor Dashboard &copy; 2026</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./js/chart.js"></script>
+  <script src="./js/lucide.min.js"></script>
+  <script src="./js/html2pdf.bundle.min.js"></script>
+  <script src="./js/monitor.js"></script>
+</body>
+</html>
