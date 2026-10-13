@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heatmap Dashboard</title>
+
+    
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        button {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    background: #0b2e6b;
+
+    color: white;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+}
+        body {
+
+    margin: 0;
+
+    font-family: Arial;
+}
+
+#header {
+
+    text-align: center;
+
+    background: white;
+
+    padding: 10px;
+
+    z-index: 1000;
+}
+
+#header h1 {
+
+    margin: 0;
+
+    color: #0b2e6b;
+
+    font-size: 42px;
+}
+
+#header h2 {
+
+    margin: 5px 0;
+
+    color: #1b3f8b;
+
+    font-size: 22px;
+}
+
+#stats {
+
+    margin-top: 10px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+
+        .district-label {
+
+    background: transparent;
+
+    border: none;
+}
+
+.label-box {
+
+    text-align: center;
+
+    font-family: Arial;
+
+    font-weight: bold;
+
+    line-height: 1.1;
+}
+.state-label {
+
+    color: #0b2e6b;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+.district-name {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: black;
+
+    text-shadow:
+        1px 1px 2px white,
+       -1px -1px 2px white;
+}
+
+
+.district-value {
+
+    display: block;
+
+    font-size: 14px;
+
+    color: black;
+
+    text-shadow:
+        1px 1px 2px white,
+       -1px -1px 2px white;
+}
+.legend {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    font-family: Arial;
+
+    width: 220px;
+
+    margin-top: 30px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.15);
+}
+
+.legend h4 {
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+
+    color: #0b2e6b;
+
+    font-size: 22px;
+
+    text-align: center;
+}
+
+
+
+.legend-row {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+.legend i {
+
+    width: 28px;
+
+    height: 28px;
+
+    margin-right: 12px;
+
+    border-radius: 4px;
+
+    opacity: 0.9;
+}
+
+
+
+
+
+#capture {
+
+    width: 100%;
+
+    margin: 0;
+
+    
+}
+#dashboard {
+
+    display: flex;
+
+    width: 100%;
+
+    height: 900px;
+
+    margin: 0;
+
+    background: white;
+}
+
+
+
+
+#sidePanel {
+
+    width: 18%;
+
+    padding: 10px;
+
+    background: white;
+
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+
+#sidePanel h1 {
+
+    color: #0b2e6b;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+#sidePanel h2 {
+
+    color: #1b3f8b;
+
+    font-size: 24px;
+
+    margin-bottom: 30px;
+}
+.district-tooltip {
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+.district-tooltip::before {
+
+    display: none;
+}
+#topHeader {
+
+    text-align: center;
+
+    padding: 20px 0;
+
+    background: white;
+}
+
+#topHeader h1 {
+
+    color: #0b2e6b;
+
+    font-size: 52px;
+
+    margin: 0;
+}
+
+#topHeader h2 {
+
+    color: #1b3f8b;
+
+    font-size: 28px;
+
+    margin: 10px 0;
+}
+
+#topHeader h3 {
+
+    color: #444;
+
+    font-size: 22px;
+
+    margin: 0;
+}
+#map {
+
+    width: 82%;
+
+    height: 100%;
+
+    position: relative;
+}
+
+#mapTitle {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 40px;
+
+    z-index: 1000;
+
+    background: rgba(255,255,255,0.9);
+
+    padding: 18px 24px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.15);
+}
+
+#mapTitle h1 {
+
+    margin: 0;
+
+    color: #0b2e6b;
+
+    font-size: 52px;
+
+    line-height: 1;
+}
+
+#mapTitle h2 {
+
+    margin: 10px 0;
+
+    color: #1b3f8b;
+
+    font-size: 28px;
+}
+
+#mapTitle h3 {
+
+    margin: 0;
+
+    color: #444;
+
+    font-size: 22px;
+}
+#sheetButtons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+#slotPanel {
+
+position:fixed;
+
+top:80px;
+
+right:-1200px;
+
+width:1200px;
+
+height:600px;
+
+background:white;
+
+z-index:99999;
+
+box-shadow:
+0 5px 20px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+overflow:auto;
+
+border-radius:12px;
+
+}
+
+
+#slotPanel.open{
+
+right:20px;
+
+}
+
+
+.slot-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:15px;
+
+background:#003366;
+
+color:white;
+
+}
+
+
+.slot-header button{
+
+background:white;
+
+color:black;
+
+margin:0;
+
+}
+
+
+#slotPanel table{
+
+width:98%;
+
+margin:15px;
+font-size:14px;
+border-collapse:collapse;
+
+}
+
+
+#slotPanel th{
+
+background:#0b2e6b;
+
+color:white;
+
+}
+
+
+#slotPanel td,
+#slotPanel th{
+white-space:nowrap;
+padding:10px;
+
+border:1px solid #ccc;
+
+text-align:center;
+
+}
+
+#sheetButtons button {
+
+    background: #0b2e6b;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#sheetButtons button:hover {
+
+    background: #17408b;
+}
+#districtPanel {
+
+    position: fixed;
+
+    top: 0;
+    right: -800px;
+
+    width: 800px;
+    height: 100vh;
+
+    background: white;
+
+    z-index: 9999;
+
+    overflow: auto;
+
+    transition: 0.3s;
+
+    box-shadow:
+      -4px 0 15px rgba(0,0,0,.2);
+}
+
+#districtPanel.open {
+
+    right: 0;
+}
+
+.panelHeader {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    background:#003366;
+
+    color:white;
+}
+.district-tooltip {
+    pointer-events: none;
+}
+    </style>
+</head>
+
+<body>
+
+<div id="capture">
+
+    <div id="dashboard">
+        <div id="sidePanel">
+            <button onclick="goBack()">
+
+    ← Back to Priority Settings
+
+</button>
+            <div id="sheetButtons">
+                <div
+  style="
+    margin-top:20px;
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  "
+>
+
+<label>
+State
+</label>
+
+<select id="stateFilter">
+
+<option value="">
+All States
+</option>
+</select>
+
+<label>
+From Date
+</label>
+
+<input
+  type="date"
+  id="fromDate"
+  value="2026-07-28"
+>
+
+<label>
+To Date
+</label>
+
+<input
+  type="date"
+  id="toDate"
+>
+
+<label>
+Day
+</label>
+
+<select id="dayFilter">
+
+<option value="">
+All Days
+</option>
+
+<option value="Monday">
+Monday
+</option>
+
+<option value="Tuesday">
+Tuesday
+</option>
+
+<option value="Wednesday">
+Wednesday
+</option>
+
+<option value="Thursday">
+Thursday
+</option>
+
+<option value="Friday">
+Friday
+</option>
+
+<option value="Saturday">
+Saturday
+</option>
+
+<option value="Sunday">
+Sunday
+</option>
+
+</select>
+
+
+<label>
+    Visit Status
+</label>
+
+<select id="visitStatusFilter">
+    <option value="all">All Visits</option>
+    <option value="visited">Visited</option>
+    <option value="not_visited">Not Visited</option>
+</select>
+
+<label>
+    Entry Status
+</label>
+
+<select id="entryStatusFilter">
+    <option value="all">All Entries</option>
+    <option value="entered">Entered</option>
+    <option value="not_entered">Not Entered</option>
+</select>
+
+
+<button onclick="reloadCurrentSheet()">
+  Apply Filter
+</button>
+
+</div>
+
+    <button onclick="loadSheet(0)">
+        Appointment
+    </button>
+
+    <button onclick="loadSheet(1)">
+        Walk-In
+    </button>
+<button onclick="loadSheet(4)">
+    PT/ RT/ PwD Entries
+</button>
+
+
+
+    <button onclick="loadSheet(3)">
+    Total
+</button>
+
+<button onclick="openSlotSummary()">
+    Slot Summary
+</button>
+</div>
+
+
+
+            <div id="stats">
+
+                Total Visits:
+                <span id="totalCount">0</span>
+
+            </div>
+            
+
+
+            
+            <div id="legendContainer"></div>
+        </div>
+
+        <div id="map">
+                <div id="mapTitle">
+
+        <h1>RO Thiruvananthapuram</h1>
+
+        <h2>
+            DISTRICT-WISE APPOINTMENT HEATMAP
+        </h2>
+
+        <h3>
+            DURATION 3rd Feb to 22nd May
+        </h3>
+
+    </div>
+        </div>
+        <div id="districtPanel">
+
+    <div class="panelHeader">
+
+        <h3 id="districtTitle">
+            District Details
+        </h3>
+
+        <button onclick="closeDistrictPanel()">
+            ✕
+        </button>
+
+    </div>
+
+    <div id="districtTableContainer">
+    </div>
+
+</div>
+
+        
+
+    </div>
+
+</div>
+<div id="slotPanel">
+
+<div class="slot-header">
+
+<h3>
+Slot Summary
+</h3>
+<button onclick="downloadSlotCSV()">
+⬇ Download CSV
+</button>
+
+<button onclick="closeSlotSummary()">
+X
+</button>
+
+</div>
+
+
+<div id="slotTableContainer">
+
+Loading...
+
+</div>
+
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+
+
+
+<script src="https://github.com/niklasvh/html2canvas/releases/download/v1.4.1/html2canvas.min.js"></script>
+
+
+ <script>
+
+function goBack() {
+
+    window.location.href =
+        "priority-settings.html";
+}
+
+</script>
+<script>
+const today = new Date()
+    .toLocaleDateString(
+        "en-CA",
+        {
+            timeZone: "Asia/Kolkata"
+        }
+    );
+
+document.getElementById("toDate").value = today;
+</script>
+<script src="./js/heat.js?v=41"></script>
+</body>
+<script src="https://github.com/niklasvh/html2canvas/releases/download/v1.4.1/html2canvas.min.js"></script>
+</html>
