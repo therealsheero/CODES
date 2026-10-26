@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title data-i18n="guard3.title">
+    Resident Physical / Reference Entry
+  </title>
+
+  <link rel="icon" href="./assets/favicon.svg?v=2">
+
+  <script src="./js/i18n.js?v=3"></script>
+
+<style>
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("./assets/bg3.png?v=5");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+.gov-header {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #fada5e, #eedc82);
+  color: black;
+  border-bottom: 4px solid #f59e0b;
+}
+
+.gov-left {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.gov-left img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.gov-center {
+  flex: 1;
+  text-align: center;
+}
+
+.gov-center h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: black;
+}
+
+.gov-right {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.gov-lang-container {
+  width: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 !important;
+}
+
+.gov-lang-select,
+#langSelect {
+  width: auto !important;
+  min-width: 170px;
+  max-width: 210px;
+  margin: 0 !important;
+  padding: 7px 10px;
+  font-size: 14px;
+  background: white;
+  color: #111;
+  border: 1px solid #999;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+#formWrapper {
+  background: rgba(255,255,255,0.92);
+  padding: 22px;
+  border-radius: 14px;
+  max-width: 850px;
+  margin: auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+input,
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+button[type="submit"] {
+  margin-top: 14px;
+  background: linear-gradient(
+    135deg,
+    #0f766e,
+    #115e59
+  );
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.02);
+}
+
+h2 {
+  text-align: center;
+  margin: 28px 0 15px;
+  font-size: 26px;
+}
+
+.actions {
+  margin: 15px 0 22px;
+  text-align: center;
+}
+
+.actions button {
+  display: inline-block;
+  width: auto !important;
+  padding: 9px 18px;
+  margin: 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #e5e5e5;
+}
+
+
+#entryTable {
+  width: calc(100% - 40px);
+  margin: 0 auto 30px;
+  border-collapse: collapse;
+  background: white;
+}
+
+#entryTable th,
+#entryTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#entryTable th {
+  background: #f2f2f2;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+
+@media (max-width: 700px) {
+
+  .gov-header {
+    padding: 8px 10px;
+  }
+
+  .gov-left {
+    width: 60px;
+  }
+
+  .gov-left img {
+    height: 45px;
+  }
+
+  .gov-center h1 {
+    font-size: 18px;
+  }
+
+  .gov-right {
+    width: auto;
+  }
+
+  .gov-lang-select,
+  #langSelect {
+    min-width: 110px;
+    max-width: 130px;
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  #entryTable {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .gov-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .gov-left {
+    width: 50px;
+  }
+
+  .gov-center {
+    flex: 1;
+  }
+
+  .gov-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gov-lang-container {
+    justify-content: center;
+  }
+
+  .gov-lang-select,
+  #langSelect {
+    width: 180px !important;
+    max-width: 180px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header class="gov-header">
+
+  <div class="gov-left">
+    <img
+      src="./assets/india-emblem.png"
+      alt="Government of India Logo"
+    >
+  </div>
+
+  <div class="gov-center">
+
+    <h1 data-i18n="header.title">
+      Government of India
+    </h1>
+
+    <p data-i18n="guard3.header_subtitle">
+      Resident Physical / Reference Entry
+    </p>
+
+  </div>
+
+  <div class="gov-right">
+  </div>
+
+</header>
+<div class="actions">
+
+<button
+  onclick="logout()"
+  data-i18n="guard3.logout"
+>
+  Logout
+</button>
+</div>
+<div id="formWrapper">
+<h3
+  style="color:red; font-weight:bold; text-align:center; line-height:1.4;"
+  data-i18n="guard3.disclaimer_entry"
+>
+  DISCLAIMER: This entry is for residents visiting through Physical Token or Reference only.
+</h3>
+
+<h3 data-i18n="guard3.resident_details">
+  Resident Details
+</h3>
+
+<form id="entryForm">
+
+<label data-i18n="guard3.fields.name">
+  Name
+</label>
+
+  <input
+    id="name"
+    required
+  >
+
+  <label data-i18n="guard3.fields.mobile">
+    Mobile / मोबाइल
+  </label>
+
+  <input
+    id="mobile"
+    pattern="[0-9]{10}"
+    maxlength="10"
+    autocomplete="off"
+    required
+  >
+
+  <label data-i18n="guard3.fields.aadhaar_last4">
+    Aadhaar (Last 4) / आधार (अंतिम 4 अंक)
+  </label>
+
+  <input
+    id="aadhaar"
+    type="text"
+    pattern="[0-9]{4}"
+    maxlength="4"
+    inputmode="numeric"
+    placeholder="XXXX"
+    autocomplete="off"
+    required
+  />
+
+  <label data-i18n="guard3.fields.gender">
+    Gender / लिंग
+  </label>
+
+  <select id="gender">
+
+<option value="Male" data-i18n="guard3.gender.male">
+  Male
+</option>
+
+<option value="Female" data-i18n="guard3.gender.female">
+  Female
+</option>
+
+<option value="Transgender" data-i18n="guard3.gender.transgender">
+  Transgender
+</option>
+
+  </select>
+
+  <label data-i18n="guard3.fields.age">
+    Age / आयु
+  </label>
+
+  <input
+    id="age"
+    type="number"
+    min="0"
+    max="99"
+    required
+  >
+
+<label data-i18n="guard3.fields.district">
+  District
+</label>
+
+<select id="district" required>
+  <option value="" data-i18n="guard3.select_district">
+    Select District
+  </option>
+</select>
+<label data-i18n="guard3.fields.eid">
+    EID / नामांकन संख्या (Optional)
+</label>
+
+<input
+    id="eid"
+    type="text"
+    maxlength="28"
+    placeholder="Enter EID (Optional)"
+data-i18n-placeholder="guard3.placeholders.eid"
+>
+
+<label data-i18n="guard3.fields.service_type">
+  Service Type
+</label>
+
+<select id="service_type" required>
+  <option value="" data-i18n="guard3.select_service_type">
+    Select Service Type
+  </option>
+</select>
+
+<label data-i18n="guard3.fields.reference_of">
+  Reference Of
+</label>
+
+<input
+  id="reference_of"
+  placeholder="Name"
+  data-i18n-placeholder="guard3.placeholders.reference_of"
+/>
+
+  <label data-i18n="guard3.fields.entry_type">
+  Entry Type
+</label>
+
+<select id="token_type">
+
+    <option value="Physical Token" data-i18n="guard3.entry_types.physical_token">
+  Physical Token
+</option>
+
+<option value="Reference" data-i18n="guard3.entry_types.reference">
+  Reference
+</option>
+
+<option value="Specially Abled" data-i18n="guard3.entry_types.specially_abled">
+  Specially Abled (PwD)
+</option>
+  </select>
+
+  <button
+  type="submit"
+  data-i18n="guard3.save_entry"
+>
+  Save Entry
+</button>
+
+</form>
+
+<h3
+  style="
+    color:black;
+    font-weight:bold;
+    text-align:center;
+    line-height:1.4;
+    font-size:10px;
+  "
+  data-i18n="guard3.disclaimer_correctness"
+>
+  Residents are responsible for the correctness of the submitted details.
+</h3>
+
+</div>
+
+<hr>
+
+<h3
+  style="font-weight:bold; text-align:center; line-height:1.4;"
+  data-i18n="guard3.table_title"
+>
+  Resident Physical / Reference Entries
+</h3>
+
+<table id="entryTable">
+
+  <thead>
+  <tr>
+    <th data-i18n="guard3.table.token">Token</th>
+    <th data-i18n="guard3.table.name">Name</th>
+    <th data-i18n="guard3.table.age">Age</th>
+    <th data-i18n="guard3.table.mobile">Mobile</th>
+    <th data-i18n="guard3.table.gender">Gender</th>
+    <th data-i18n="guard3.table.district">District</th>
+    <th data-i18n="guard3.table.eid">EID</th>
+    <th data-i18n="guard3.table.service">Service</th>
+    <th data-i18n="guard3.table.type">Type</th>
+    <th data-i18n="guard3.table.time">Time</th>
+    <th data-i18n="guard3.table.reference_of">Reference Of</th>
+  </tr>
+</thead>
+
+  <tbody></tbody>
+
+</table>
+<script src="./js/guard3.js?v=12"></script>
+</body>
+</html>

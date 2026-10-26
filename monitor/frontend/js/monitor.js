@@ -462,6 +462,28 @@ async function loadSlotTable() {
   });
 }
 
+const districtNameMap = {
+    "allahabad": "prayagraj",
+    "faizabad": "ayodhya",
+    "sant ravidas nagar": "bhadohi",
+    "mahrajganj": "maharajganj",
+    "muradabad": "moradabad",
+    "siddharth nagar": "siddharthnagar",
+    "shrawasti": "shravasti",
+    "mahamaya nagar": "hathras",
+    "jyotiba phule nagar": "amroha",
+    "kheri": "lakhimpur kheri",
+    "badaun": "budaun"
+};
+
+function normalizeDistrictName(name) {
+    const key = String(name || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+    return districtNameMap[key] || key;
+}
 
 async function loadMap() {
 
@@ -874,10 +896,7 @@ async function loadMap() {
 
         districtData.data.forEach(d => {
 
-            const key =
-                String(d.district || "")
-                    .trim()
-                    .toLowerCase();
+            const key = normalizeDistrictName(d.district);
 
             if (!key) return;
 
@@ -1247,10 +1266,7 @@ async function loadMap() {
                                 feature.properties.name ||
                                 "";
 
-                            const key =
-                                String(districtName)
-                                    .trim()
-                                    .toLowerCase();
+                            const key = normalizeDistrictName(districtName);
 
                             const district =
                                 districtMap[key];
@@ -1291,10 +1307,8 @@ async function loadMap() {
                                     feature.properties.name ||
                                     "Unknown";
 
-                                const key =
-                                    String(districtName)
-                                        .trim()
-                                        .toLowerCase();
+
+                                const key = normalizeDistrictName(districtName);
 
                                 const district =
                                     districtMap[key];
