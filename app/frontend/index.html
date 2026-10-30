@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="page_title">Aadhaar Services</title>
+<link rel="icon" href="./assets/favicon.svg?v=2">
+<link rel="stylesheet" href="./css/style.css?v=15">
+<link rel="stylesheet"
+ href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+<style>
+:root{--navy:#123568;--blue:#2457a7;--green:#087f67;--purple:#6941c6;--orange:#b45309;--ink:#172b4d;--muted:#52647a;--wrap:880px}
+*{box-sizing:border-box}
+body{color:var(--ink);scroll-behavior:smooth}
+main{padding-bottom:32px}
+
+/* Hero + language */
+.service-hero{width:min(var(--wrap),calc(100% - 32px));margin:16px auto 12px;text-align:center}
+.service-hero h2{margin:0;color:var(--navy);font-size:clamp(22px,2.6vw,28px);line-height:1.2}
+.service-hero p{max-width:620px;margin:6px auto 0;color:var(--muted);font-size:14px;line-height:1.5}
+.language-panel{display:flex;align-items:center;justify-content:center;gap:10px;width:min(400px,calc(100% - 32px));margin:0 auto 16px;padding:8px 12px;background:#fff;border:1px solid #dbe4ef;border-radius:12px;box-shadow:0 4px 14px #102f5f0f}
+.language-panel label{font-size:13px;font-weight:700;color:#183d70}
+.language-panel select{width:180px;max-width:60%;padding:8px 10px;border:1px solid #cbd6e3;border-radius:8px;background:#fff;color:var(--ink)}
+
+/* Flow sections (compact, centered) */
+.flow-section{width:min(var(--wrap),calc(100% - 32px));margin:0 auto 10px;padding:14px 16px 16px;background:#ffffffcc;border:1px solid #e2e9f2;border-radius:16px;scroll-margin-top:12px}
+.flow-heading{text-align:center;margin:0 0 12px;color:var(--navy);font-size:18px;line-height:1.3}
+.step-pill{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 6px;color:#64748b;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.step-pill:before,.step-pill:after{content:"";height:1px;width:32px;background:#dbe4ef}
+
+/* Option cards */
+.choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.choice-grid.update-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choice-card{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;width:100%;min-width:0;min-height:112px;justify-self:stretch;align-self:stretch;margin:0;padding:14px 10px;border:1px solid #dce5ef;border-top:4px solid var(--choice-color,var(--blue));border-radius:12px;background:#fff;box-shadow:0 3px 10px #14305310;color:var(--ink);text-align:center;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.choice-card:hover,.choice-card:focus-visible{transform:translateY(-2px);box-shadow:0 8px 18px #1430531c;outline:3px solid #3974c633}
+.choice-card[aria-pressed="true"]{border-color:var(--choice-color,var(--blue));background:var(--choice-tint,#f2f6ff);box-shadow:0 0 0 2px var(--choice-color,var(--blue)) inset}
+.choice-card .choice-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--choice-tint,#eaf2ff);color:var(--choice-color,var(--blue));font-size:19px;font-weight:800;line-height:1}
+.choice-card strong{font-size:14px;line-height:1.25}
+.choice-card small{font-size:11.5px;line-height:1.4;color:var(--muted)}
+
+.flow-arrow{display:flex;justify-content:center;height:16px;margin:0 auto;color:#8da0b8;font-size:18px;line-height:1}
+.hidden{display:none!important}
+
+/* Results */
+.results-section{width:min(var(--wrap),calc(100% - 32px));margin:0 auto 10px;padding:14px 16px 16px;background:#ffffffcc;border:1px solid #e2e9f2;border-radius:16px;scroll-margin-top:12px}
+.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.results-grid.one-card{grid-template-columns:minmax(0,min(520px,100%));justify-content:center}
+.service-card{--accent:var(--blue);display:flex;flex-direction:column;min-width:0;padding:18px;border:1px solid #dce5ef;border-top:4px solid var(--accent);border-radius:12px;background:#fff;box-shadow:0 3px 10px #14305310}
+.service-card.ro-card{--accent:var(--blue)}.service-card.app-card{--accent:var(--green)}.service-card.appointment-card{--accent:var(--purple)}.service-card.walkin-card{--accent:var(--orange)}
+.service-card h3{margin:0 0 7px;color:#122f57;font-size:17px;line-height:1.3}
+.service-card p{margin:0 0 12px;color:var(--muted);font-size:13.5px;line-height:1.55}
+.service-kicker{margin:0 0 4px!important;color:var(--accent)!important;font-size:14px!important;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.card-note{margin:0 0 14px;padding:10px 12px;border-radius:10px;background:#f5f8fc;color:#354b66;font-size:12px;line-height:1.55}
+.ro-warning{background:#fff0f1;border-left:4px solid #d94a58}
+.ro-warning strong{color:#a30e25}
+.service-button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:42px;margin-top:auto;padding:10px 14px;border:1px solid var(--accent);border-radius:9px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;font-family:inherit}
+.service-button:hover{filter:brightness(.94);color:#fff}
+.app-card .service-button.secondary{background:#fff;color:var(--green)}
+.app-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:auto}
+.app-links .service-button{margin:0;background:#fff;color:var(--green)}
+.state-container{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.state-container label{font-size:13px;font-weight:700;color:#183d70}
+.state-container select{width:100%;padding:10px 12px;border:1px solid #cbd6e3;border-radius:9px;background:#fff;color:var(--ink)}
+.coming-soon{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;margin-top:auto;padding:12px;border-radius:10px;background:#fff0df;color:#a9470b;font-size:16px;font-weight:700}
+.app-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:2px 0 12px}
+.app-feature{padding:10px 6px;border-radius:10px;text-align:center;font-size:12px;font-weight:700}
+.app-feature:nth-child(1){background:#e8f7f2;color:#08715d}.app-feature:nth-child(2){background:#eaf3ff;color:#1558b0}.app-feature:nth-child(3){background:#f2edff;color:#5422a5}
+/* Card icons */
+.card-icon{display:grid;place-items:center;width:40px;height:40px;margin:0 0 10px;border-radius:11px;background:#eef3fb;background:color-mix(in srgb,var(--accent) 12%,#fff);color:var(--accent)}
+.card-icon svg{width:22px;height:22px}
+.app-feature{display:flex;align-items:center;justify-content:center;gap:6px}
+.feature-icon{font-size:15px;line-height:1}
+
+/* Aadhaar app card: full-width, prominent row */
+.results-grid .app-card{grid-column:1 / -1;padding:26px;border-top-width:6px;background:linear-gradient(135deg,#eefaf6,#fff 65%);box-shadow:0 8px 24px #08705b1f}
+.app-card .app-body{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:center}
+.app-card .app-main .card-icon{width:48px;height:48px}
+.app-card .app-main .card-icon svg{width:26px;height:26px}
+.app-card h3{font-size:23px}
+.app-card .app-side{display:flex;flex-direction:column;gap:14px}
+.app-card .app-side .card-note{margin:0}
+.app-card .app-links .service-button{min-height:50px;font-size:14px;background:var(--green);color:#fff}
+
+.back-button{display:block;margin:14px auto 0;padding:8px 14px;border:1px solid #cbd6e3;border-radius:8px;background:#fff;color:#34516f;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+
+@media(max-width:760px){
+  .flow-section,.results-section{padding:12px}
+  .choice-grid,.choice-grid.update-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .choice-grid:not(.update-grid) .choice-card:last-child{grid-column:1 / -1}
+  .results-grid,.results-grid.one-card{grid-template-columns:1fr}
+  .service-card{padding:16px}
+  .results-grid .app-card{padding:18px}
+  .app-card .app-body{grid-template-columns:1fr;gap:16px}
+  .service-hero{margin-top:12px}
+}
+@media(max-width:420px){
+  .language-panel{flex-direction:column;align-items:stretch}
+  .language-panel select{width:100%;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+/* Keep card icon and kicker text on the same horizontal line */
+.service-card-kicker {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.service-card-kicker .card-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin: 0 !important;
+}
+
+.service-card-kicker .service-kicker {
+    margin: 0 !important;
+    padding: 0;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* Aadhaar App Card - Centered Vertical Layout */
+
+.results-grid .app-card {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 28px 24px;
+}
+
+/* Stack all content vertically */
+.app-card .app-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 18px;
+    width: 100%;
+}
+
+/* Main content */
+.app-card .app-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+/* Digital service label */
+.app-card .service-kicker {
+    margin: 0 0 18px !important;
+    text-align: center;
+}
+
+/* Three service icons */
+.app-card .app-feature-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    margin: 0 0 18px;
+}
+
+.app-card .app-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 115px;
+    min-height: 100px;
+    padding: 14px 10px;
+    border-radius: 12px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Individual icons */
+.app-card .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #e3f6f0;
+    color: #087f67;
+    font-size: 23px;
+}
+
+/* Description */
+.app-card .app-description {
+    max-width: 620px;
+    margin: 0 auto !important;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Download section */
+.app-card .app-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Download message */
+.app-card .app-side .card-note {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Stack download buttons vertically */
+.app-card .app-links {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 0;
+}
+
+.app-card .app-links .service-button {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    min-height: 48px;
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+    background: var(--green);
+    color: #fff;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.app-card .app-links .service-button:hover {
+    filter: brightness(0.94);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .results-grid .app-card {
+        padding: 22px 14px;
+    }
+
+    .app-card .app-feature-grid {
+        gap: 8px;
+    }
+
+    .app-card .app-feature {
+        width: 95px;
+        min-height: 90px;
+        font-size: 11px;
+    }
+
+    .app-card .app-side {
+        max-width: 100%;
+    }
+}
+.app-card .app-links .service-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.app-card .app-links .service-button i {
+    font-size: 19px;
+}
+
+</style>
+</head>
+<body>
+<header class="gov-header">
+  <div class="gov-left"><img src="./assets/india-emblem.png" alt="Government of India emblem"></div>
+  <div class="gov-center"><h1 data-i18n="header_title">Government of India</h1></div>
+  <div class="gov-right"><img src="./assets/Aadhaar_Small.png" alt="Aadhaar"></div>
+</header>
+
+<main>
+  <section class="service-hero">
+    <h2 data-i18n="hero_title">How can we help you today?</h2>
+    <p data-i18n="hero_description">Choose the service you need to continue.</p>
+  </section>
+
+  <div class="language-panel">
+    <label for="languageSelect" data-i18n="choose_language">Choose Language</label>
+    <select id="languageSelect">
+      <option value="en">English</option><option value="hi">हिन्दी</option>
+      <option value="bn">বাংলা</option><option value="kn">ಕನ್ನಡ</option>
+      <option value="ta">தமிழ்</option><option value="te">తెలుగు</option>
+      <option value="gu">ગુજરાતી</option><option value="ml">മലയാളം</option>
+      <option value="or">ଓଡ଼ିଆ</option><option value="mr">मराठी</option>
+      <option value="as">অসমীয়া</option>
+    </select>
+  </div>
+
+  <section class="flow-section" id="serviceTypeSection">
+    <div class="step-pill">Step 1</div>
+    <h2 class="flow-heading" data-i18n="flow_choose_service">What do you want to do?</h2>
+    <div class="choice-grid">
+      <button class="choice-card" style="--choice-color:#087f67;--choice-tint:#e3f6f0" data-service="enrollment" aria-pressed="false">
+        <span class="choice-icon">＋</span><strong data-i18n="flow_enrollment">Enrolment</strong>
+        <small data-i18n="flow_enrollment_desc">New Aadhaar enrolment</small>
+      </button>
+      <button class="choice-card" style="--choice-color:#2457a7;--choice-tint:#eaf2ff" data-service="update" aria-pressed="false">
+        <span class="choice-icon">↻</span><strong data-i18n="flow_update">Update</strong>
+        <small data-i18n="flow_update_desc">Update Aadhaar details</small>
+      </button>
+      <button class="choice-card" style="--choice-color:#6941c6;--choice-tint:#f0eaff" data-service="grievance" aria-pressed="false">
+        <span class="choice-icon">?</span><strong data-i18n="flow_grievance">Grievance</strong>
+        <small data-i18n="flow_grievance_desc">Help with an unresolved issue</small>
+      </button>
+    </div>
+  </section>
+
+  <div class="flow-arrow hidden" id="stepArrow" aria-hidden="true">↓</div>
+
+  <section class="flow-section hidden" id="updateTypeSection">
+    <div class="step-pill">Step 2</div>
+    <h2 class="flow-heading" data-i18n="flow_choose_update">What would you like to update?</h2>
+    <div class="choice-grid update-grid">
+      <button class="choice-card" data-update="mobile" aria-pressed="false"><span class="choice-icon">☎</span><strong data-i18n="flow_mobile">Mobile Number</strong></button>
+      <button class="choice-card" data-update="address" aria-pressed="false"><span class="choice-icon">⌂</span><strong data-i18n="flow_address">Address</strong></button>
+      <button class="choice-card" data-update="email" aria-pressed="false"><span class="choice-icon">✉</span><strong data-i18n="flow_email">Email</strong></button>
+      <button class="choice-card" data-update="other" aria-pressed="false"><span class="choice-icon">⋯</span><strong data-i18n="flow_other">Other Updates</strong><small data-i18n="flow_other_desc">Name, DOB, gender, photo, biometrics, reactivation, etc.</small></button>
+    </div>
+  </section>
+
+  <section class="results-section hidden" id="resultsSection">
+    <div class="step-pill" id="resultsStep">Next Step</div>
+    <h2 class="flow-heading" id="resultsHeading">Available services</h2>
+    <div class="results-grid" id="resultsGrid"></div>
+    <button class="back-button" id="startOver" type="button" data-i18n="flow_start_over">Start over</button>
+  </section>
+</main>
+
+<template id="appointmentCardTemplate">
+  <article class="service-card appointment-card">
+    <div class="service-card-kicker">
+    <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg></span>
+    <p class="service-kicker" data-i18n="appointment_kicker">Plan your visit</p>
+    </div>
+    <h3 data-i18n="appointment_title">Book an ASK Appointment</h3>
+    <p data-i18n="appointment_description">Schedule a visit to an Aadhaar Seva Kendra (ASK) at your preferred available date and time.</p>
+    <div class="card-note" data-i18n="appointment_note">For enrolment, eligible updates and reactivation of suspended Aadhaar.</div>
+    <a class="service-button" href="https://bookappointment.uidai.gov.in/" target="_blank" rel="noopener noreferrer" data-i18n="appointment_button">Book an Appointment</a>
+  </article>
+</template>
+
+<template id="walkinCardTemplate">
+  <article class="service-card walkin-card">
+    <div class="service-card-kicker">
+    <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2.5 2.5 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2.5 2.5 0 0 0 0-6z"/><line x1="14" y1="6" x2="14" y2="18" stroke-dasharray="2 2.5"/></svg></span>
+    <p class="service-kicker" data-i18n="walkin_kicker">For nearby walk-in access</p>
+    </div>
+    <h3 data-i18n="walkin_title">Walk-in Token</h3>
+    <p data-i18n="walkin_description">Get a token for an Aadhaar Seva Kendra (ASK) visit near you, without booking an appointment.</p>
+    <div class="coming-soon" data-i18n="coming_soon">Coming Soon</div>
+  </article>
+</template>
+
+
+<template id="appCardTemplate">
+  <article class="service-card app-card">
+
+    <div class="app-body">
+
+      <div class="app-main">
+
+        <p class="service-kicker" data-i18n="app_kicker">
+          DIGITAL SERVICE
+        </p>
+
+        <!-- Three service icons -->
+        <div class="app-feature-grid">
+
+          <div class="app-feature">
+            <span class="feature-icon" aria-hidden="true">☎</span>
+            <span data-i18n="mobile_number">Mobile Number</span>
+          </div>
+
+          <div class="app-feature">
+            <span class="feature-icon" aria-hidden="true">⌂</span>
+            <span data-i18n="address">Address</span>
+          </div>
+
+          <div class="app-feature">
+            <span class="feature-icon" aria-hidden="true">✉</span>
+            <span data-i18n="email_id">Email ID</span>
+          </div>
+
+        </div>
+
+        <p class="app-description" data-i18n="app_description">
+          Update your mobile number, address and email from the
+          comfort of your home using the new Aadhaar app.
+        </p>
+
+      </div>
+
+      <div class="app-side">
+
+        <div class="card-note" data-i18n="app_note">
+          Download the new Aadhaar app to access these services.
+        </div>
+
+        <div class="app-links">
+
+<a class="service-button secondary"
+   href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
+   target="_blank"
+   rel="noopener noreferrer"
+   data-i18n-aria-label="android_download_aria">
+
+    <i class="fa-brands fa-google-play" aria-hidden="true"></i>
+    <span data-i18n="android_download">Download for Android</span>
+
+</a>
+
+<a class="service-button secondary"
+   href="https://apps.apple.com/in/app/aadhaar/id6744029871"
+   target="_blank"
+   rel="noopener noreferrer"
+   data-i18n-aria-label="ios_download_aria">
+
+    <i class="fa-brands fa-apple" aria-hidden="true"></i>
+    <span data-i18n="ios_download">Download for iPhone (iOS)</span>
+
+</a>
+
+</div>
+
+      </div>
+
+    </div>
+
+  </article>
+</template>
+
+
+<template id="roCardTemplate">
+  <article class="service-card ro-card">
+    <div class="service-card-kicker">
+    <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><line x1="12" y1="9" x2="12" y2="9.01"/></svg></span>
+    <p class="service-kicker" data-i18n="ro_kicker">For grievances and assistance</p>
+    </div>
+    <h3 data-i18n="ro_title">Regional Office Token Booking</h3>
+    <p data-i18n="ro_description">For unresolved Aadhaar grievances requiring RO-level intervention.</p>
+    <div class="card-note ro-warning"><strong data-i18n="ro_warning_title">No enrolment or update is done here.</strong><br><span data-i18n="ro_warning_description">For enrolment and updates, visit an Aadhaar Seva Kendra (ASK).</span></div>
+    <div class="state-container">
+      <label for="stateSelect" data-i18n="choose_state">Choose Your State / Union Territory</label>
+      <select id="stateSelect">
+        <option value="" data-i18n="select_state">-- Select State or Union Territory --</option>
+        <option value="AN" data-i18n="state_an">Andaman &amp; Nicobar</option><option value="AP" data-i18n="state_ap">Andhra Pradesh</option>
+        <option value="AR" data-i18n="state_ar">Arunachal Pradesh</option><option value="AS" data-i18n="state_as">Assam</option>
+        <option value="BIH" data-i18n="state_bih">Bihar</option><option value="CD" data-i18n="state_cd">Chandigarh</option>
+        <option value="CG" data-i18n="state_cg">Chhattisgarh</option><option value="DDDNH" data-i18n="state_dddnh">Dadra &amp; Nagar Haveli &amp; Daman and Diu</option>
+        <option value="DL" data-i18n="state_dl">Delhi</option><option value="GOA" data-i18n="state_goa">Goa</option>
+        <option value="GJ" data-i18n="state_gj">Gujarat</option><option value="HR" data-i18n="state_hr">Haryana</option>
+        <option value="HP" data-i18n="state_hp">Himachal Pradesh</option><option value="JHK" data-i18n="state_jhk">Jharkhand</option>
+        <option value="JK" data-i18n="state_jk">Jammu &amp; Kashmir</option><option value="KRN" data-i18n="state_krn">Karnataka</option>
+        <option value="KER" data-i18n="state_ker">Kerala</option><option value="LAD" data-i18n="state_lad">Ladakh</option>
+        <option value="LKS" data-i18n="state_lks">Lakshadweep</option><option value="MP" data-i18n="state_mp">Madhya Pradesh</option>
+        <option value="MH" data-i18n="state_mh">Maharashtra</option><option value="ME" data-i18n="state_me">Meghalaya</option>
+        <option value="MN" data-i18n="state_mn">Manipur</option><option value="MZ" data-i18n="state_mz">Mizoram</option>
+        <option value="NG" data-i18n="state_ng">Nagaland</option><option value="ODSH" data-i18n="state_odsh">Odisha</option>
+        <option value="PD" data-i18n="state_pd">Puducherry</option><option value="PB" data-i18n="state_pb">Punjab</option>
+        <option value="RJ" data-i18n="state_rj">Rajasthan</option><option value="SK" data-i18n="state_sk">Sikkim</option>
+        <option value="TN" data-i18n="state_tn">Tamil Nadu</option><option value="TELANGANA" data-i18n="state_telangana">Telangana</option>
+        <option value="TR" data-i18n="state_tr">Tripura</option><option value="UK" data-i18n="state_uk">Uttarakhand</option>
+        <option value="UP" data-i18n="state_up">Uttar Pradesh</option><option value="WB" data-i18n="state_wb">West Bengal</option>
+      </select>
+      <button class="service-button" type="button" id="continueRO" data-i18n="continue">Continue</button>
+    </div>
+  </article>
+</template>
+
+<script>
+(function () {
+  const serviceTypeSection = document.getElementById("serviceTypeSection");
+  const updateTypeSection = document.getElementById("updateTypeSection");
+  const resultsSection = document.getElementById("resultsSection");
+  const resultsGrid = document.getElementById("resultsGrid");
+  const resultsHeading = document.getElementById("resultsHeading");
+  const stepArrow = document.getElementById("stepArrow");
+
+  function scrollToSection(element) {
+    requestAnimationFrame(() => {
+      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+
+  function cloneTemplate(id) {
+    return document.getElementById(id).content.cloneNode(true);
+  }
+
+  function showResults(title, cards) {
+    resultsGrid.replaceChildren();
+    resultsHeading.textContent = title;
+    cards.forEach(id => resultsGrid.appendChild(cloneTemplate(id)));
+    resultsGrid.classList.toggle("one-card", cards.length === 1);
+    resultsSection.classList.remove("hidden");
+    // Translate newly inserted cards using the currently loaded dictionary.
+    if (window.i18n && typeof window.i18n.translatePage === "function") {
+      window.i18n.translatePage();
+    } else if (typeof window.translatePage === "function") {
+      window.translatePage();
+    }
+    scrollToSection(resultsSection);
+  }
+
+  function resetPressed(container) {
+    container.querySelectorAll(".choice-card").forEach(button => button.setAttribute("aria-pressed", "false"));
+  }
+
+  serviceTypeSection.querySelectorAll("[data-service]").forEach(button => {
+    button.addEventListener("click", () => {
+      resetPressed(serviceTypeSection);
+      button.setAttribute("aria-pressed", "true");
+      const service = button.dataset.service;
+
+      updateTypeSection.classList.add("hidden");
+      resultsSection.classList.add("hidden");
+      stepArrow.classList.remove("hidden");
+
+      if (service === "enrollment") {
+        showResults("Book your Aadhaar Seva Kendra visit", ["appointmentCardTemplate", "walkinCardTemplate"]);
+      } else if (service === "update") {
+        updateTypeSection.classList.remove("hidden");
+        scrollToSection(updateTypeSection);
+      } else if (service === "grievance") {
+        showResults("Regional Office assistance", ["roCardTemplate"]);
+      }
+    });
+  });
+
+  updateTypeSection.querySelectorAll("[data-update]").forEach(button => {
+    button.addEventListener("click", () => {
+      resetPressed(updateTypeSection);
+      button.setAttribute("aria-pressed", "true");
+      const type = button.dataset.update;
+
+      if (type === "mobile" || type === "address" || type === "email") {
+        showResults("Choose how you want to proceed", ["appCardTemplate", "appointmentCardTemplate", "walkinCardTemplate"]);
+      } else {
+        showResults("Choose an Aadhaar Seva Kendra service", ["appointmentCardTemplate", "walkinCardTemplate"]);
+      }
+    });
+  });
+
+  document.getElementById("startOver").addEventListener("click", () => {
+    resetPressed(serviceTypeSection);
+    resetPressed(updateTypeSection);
+    updateTypeSection.classList.add("hidden");
+    resultsSection.classList.add("hidden");
+    stepArrow.classList.add("hidden");
+    scrollToSection(serviceTypeSection);
+  });
+
+  document.addEventListener("click", event => {
+    if (event.target && event.target.id === "continueRO") {
+      redirectUser();
+    }
+  });
+
+  window.redirectUser = function () {
+    const state = document.getElementById("stateSelect")?.value;
+    const lang = document.getElementById("languageSelect")?.value || "en";
+    localStorage.setItem("selected_lang", lang);
+    localStorage.setItem("app_lang", lang);
+
+    if (!state) {
+      alert(window.t ? window.t("error", "Please select your State or Union Territory") : "Please select your State or Union Territory");
+      return;
+    }
+
+    const routes = {
+      UP:"/lucknow/", ODSH:"/odisha/", BIH:"/patna/", JHK:"/ranchi/",
+      MH:"/mumbai/", GOA:"/mumbai/", WB:"/kolkata/", LKS:"/kerala/", KER:"/kerala/",
+      TN:"/bengaluru/", PD:"/bengaluru/", KRN:"/bengaluru/",
+      AS:"/guwahati/", AR:"/guwahati/", MN:"/guwahati/", ME:"/guwahati/",
+      MZ:"/guwahati/", NG:"/guwahati/", SK:"/guwahati/", TR:"/guwahati/",
+      GJ:"/gujarat/", DDDNH:"/gujarat/", DL:"/delhi/", RJ:"/delhi/", UK:"/delhi/",
+      PB:"/chandigarh/", HR:"/chandigarh/", HP:"/chandigarh/", JK:"/chandigarh/",
+      CD:"/chandigarh/", LAD:"/chandigarh/", MP:"/bhopal/"
+    };
+    window.location.href = (routes[state] || "/hyderabad/") + "?lang=" + encodeURIComponent(lang);
+  };
+})();
+</script>
+<script src="./js/i18n.js"></script>
+</body>
+</html>
