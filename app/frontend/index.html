@@ -30,7 +30,7 @@ main{padding-bottom:32px}
 
 /* Option cards */
 .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.choice-grid.update-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choice-grid.update-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .choice-card{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;width:100%;min-width:0;min-height:112px;justify-self:stretch;align-self:stretch;margin:0;padding:14px 10px;border:1px solid #dce5ef;border-top:4px solid var(--choice-color,var(--blue));border-radius:12px;background:#fff;box-shadow:0 3px 10px #14305310;color:var(--ink);text-align:center;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
 .choice-card:hover,.choice-card:focus-visible{transform:translateY(-2px);box-shadow:0 8px 18px #1430531c;outline:3px solid #3974c633}
 .choice-card[aria-pressed="true"]{border-color:var(--choice-color,var(--blue));background:var(--choice-tint,#f2f6ff);box-shadow:0 0 0 2px var(--choice-color,var(--blue)) inset}
@@ -281,7 +281,101 @@ main{padding-bottom:32px}
 .app-card .app-links .service-button i {
     font-size: 19px;
 }
+/* Main service icons */
+.choice-card .service-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 48px;
+    background: transparent;
+    font-size: 27px;
+}
 
+/* Enrolment */
+.enrollment-icon {
+    color: #087f67;
+}
+
+/* Update */
+.update-icon {
+    color: #2457a7;
+}
+
+/* Grievance */
+.grievance-icon {
+    color: #6941c6;
+}
+
+/* Secondary icon badge */
+.service-icon .icon-badge {
+    position: absolute;
+    right: -5px;
+    bottom: -3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    height: 23px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 13px;
+}
+
+.enrollment-icon .icon-badge {
+    color: #087f67;
+}
+
+.update-icon .icon-badge {
+    color: #2457a7;
+}
+
+.grievance-icon .icon-badge {
+    color: #6941c6;
+}
+
+/* Highlight Other Updates */
+.other-updates-card {
+    position: relative;
+    background: #f0f5ff;
+    border: 1.5px solid #9bbbea;
+    border-top: 4px solid #2457a7;
+    box-shadow: 0 4px 14px rgba(36, 87, 167, 0.10);
+}
+
+/* Multiple Services badge */
+.other-update-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #dce9ff;
+    color: #174a91;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Icon */
+.other-update-icon {
+    color: #174a91 !important;
+    background: #dce9ff !important;
+}
+
+/* Supporting text */
+.other-updates-card small {
+    color: #344d70;
+    line-height: 1.6;
+}
+
+/* Additional hint */
+.other-update-hint {
+    margin-top: 5px;
+    color: #174a91;
+    font-size: 11px;
+    font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -314,15 +408,24 @@ main{padding-bottom:32px}
     <h2 class="flow-heading" data-i18n="flow_choose_service">What do you want to do?</h2>
     <div class="choice-grid">
       <button class="choice-card" style="--choice-color:#087f67;--choice-tint:#e3f6f0" data-service="enrollment" aria-pressed="false">
-        <span class="choice-icon">＋</span><strong data-i18n="flow_enrollment">Enrolment</strong>
+        <span class="choice-icon service-icon enrollment-icon" aria-hidden="true">
+    <i class="fa-solid fa-user-plus"></i>
+    <i class="fa-solid fa-fingerprint icon-badge"></i>
+</span><strong data-i18n="flow_enrollment">Enrolment</strong>
         <small data-i18n="flow_enrollment_desc">New Aadhaar enrolment</small>
       </button>
       <button class="choice-card" style="--choice-color:#2457a7;--choice-tint:#eaf2ff" data-service="update" aria-pressed="false">
-        <span class="choice-icon">↻</span><strong data-i18n="flow_update">Update</strong>
+        <span class="choice-icon service-icon update-icon" aria-hidden="true">
+    <i class="fa-solid fa-id-card"></i>
+    <i class="fa-solid fa-pen icon-badge"></i>
+</span><strong data-i18n="flow_update">Update</strong>
         <small data-i18n="flow_update_desc">Update Aadhaar details</small>
       </button>
       <button class="choice-card" style="--choice-color:#6941c6;--choice-tint:#f0eaff" data-service="grievance" aria-pressed="false">
-        <span class="choice-icon">?</span><strong data-i18n="flow_grievance">Grievance</strong>
+        <span class="choice-icon service-icon grievance-icon" aria-hidden="true">
+    <i class="fa-solid fa-headset"></i>
+    <i class="fa-solid fa-circle-exclamation icon-badge"></i>
+</span><strong data-i18n="flow_grievance">Grievance</strong>
         <small data-i18n="flow_grievance_desc">Help with an unresolved issue</small>
       </button>
     </div>
@@ -330,16 +433,72 @@ main{padding-bottom:32px}
 
   <div class="flow-arrow hidden" id="stepArrow" aria-hidden="true">↓</div>
 
-  <section class="flow-section hidden" id="updateTypeSection">
+  
+<section class="flow-section hidden" id="updateTypeSection">
     <div class="step-pill">Step 2</div>
-    <h2 class="flow-heading" data-i18n="flow_choose_update">What would you like to update?</h2>
+
+    <h2 class="flow-heading" data-i18n="flow_choose_update">
+        What would you like to update?
+    </h2>
+
     <div class="choice-grid update-grid">
-      <button class="choice-card" data-update="mobile" aria-pressed="false"><span class="choice-icon">☎</span><strong data-i18n="flow_mobile">Mobile Number</strong></button>
-      <button class="choice-card" data-update="address" aria-pressed="false"><span class="choice-icon">⌂</span><strong data-i18n="flow_address">Address</strong></button>
-      <button class="choice-card" data-update="email" aria-pressed="false"><span class="choice-icon">✉</span><strong data-i18n="flow_email">Email</strong></button>
-      <button class="choice-card" data-update="other" aria-pressed="false"><span class="choice-icon">⋯</span><strong data-i18n="flow_other">Other Updates</strong><small data-i18n="flow_other_desc">Name, DOB, gender, photo, biometrics, reactivation, etc.</small></button>
+
+        <!-- Mobile Number + Email -->
+        <button class="choice-card"
+                data-update="mobile_email"
+                aria-pressed="false">
+
+            <span class="choice-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <i class="fa-solid fa-envelope"></i>
+            </span>
+
+            <strong>Mobile Number & Email</strong>
+
+        </button>
+
+        <!-- Address -->
+        <button class="choice-card"
+                data-update="address"
+                aria-pressed="false">
+
+            <span class="choice-icon">
+                <i class="fa-solid fa-house"></i>
+            </span>
+
+            <strong data-i18n="flow_address">Address</strong>
+
+        </button>
+
+        <!-- Other Updates -->
+        <button class="choice-card other-updates-card"
+        data-update="other"
+        aria-pressed="false">
+
+    <span class="other-update-badge">
+        Multiple Services
+    </span>
+
+    <span class="choice-icon other-update-icon">
+        <i class="fa-solid fa-id-card"></i>
+    </span>
+
+    <strong data-i18n="flow_other">Other Updates</strong>
+
+    <small>
+        Name, Date of Birth, Gender, Photo, Fingerprint
+        and Aadhaar Reactivation
+    </small>
+
+    <span class="other-update-hint">
+        Explore additional services →
+    </span>
+
+</button>
+
     </div>
-  </section>
+</section>
+
 
   <section class="results-section hidden" id="resultsSection">
     <div class="step-pill" id="resultsStep">Next Step</div>
@@ -555,11 +714,28 @@ main{padding-bottom:32px}
       button.setAttribute("aria-pressed", "true");
       const type = button.dataset.update;
 
-      if (type === "mobile" || type === "address" || type === "email") {
-        showResults("Choose how you want to proceed", ["appCardTemplate", "appointmentCardTemplate", "walkinCardTemplate"]);
-      } else {
-        showResults("Choose an Aadhaar Seva Kendra service", ["appointmentCardTemplate", "walkinCardTemplate"]);
-      }
+      if (type === "mobile_email" || type === "address") {
+
+    showResults(
+        "Choose how you want to proceed",
+        [
+            "appCardTemplate",
+            "appointmentCardTemplate",
+            "walkinCardTemplate"
+        ]
+    );
+
+} else if (type === "other") {
+
+    showResults(
+        "Choose an Aadhaar Seva Kendra service",
+        [
+            "appointmentCardTemplate",
+            "walkinCardTemplate"
+        ]
+    );
+
+}
     });
   });
 
