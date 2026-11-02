@@ -456,6 +456,179 @@ main{padding-bottom:32px}
     color: #34734b;
     line-height: 1.4;
 }
+
+/* =========================================
+   GRIEVANCE CONTACT CARDS
+   ========================================= */
+
+.grievance-contact-grid {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+.grievance-contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #dce5ef;
+    border-top: 4px solid var(--contact-color);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 3px 10px #14305310;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+}
+
+.grievance-contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px #1430531c;
+}
+
+.grievance-contact-card:focus-visible {
+    outline: 3px solid #3974c655;
+    outline-offset: 3px;
+}
+
+.grievance-contact-card.phone {
+    --contact-color: #2457a7;
+}
+
+.grievance-contact-card.email {
+    --contact-color: #087f67;
+}
+
+.grievance-contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+    border-radius: 11px;
+    background: color-mix(in srgb, var(--contact-color) 12%, white);
+    color: var(--contact-color);
+    font-size: 21px;
+}
+
+.grievance-contact-card h3 {
+    margin: 0 0 8px;
+    color: #122f57;
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+.grievance-contact-card p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+
+.grievance-contact-card .contact-number {
+    color: var(--contact-color);
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.grievance-contact-card .contact-action {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #e5ebf2;
+    width: 100%;
+    color: var(--contact-color);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.grievance-contact-card .contact-action i {
+    font-size: 12px;
+}
+
+/* Regional Office occupies the complete row */
+.results-grid.grievance-results > .service-card.ro-card {
+    grid-column: 1 / -1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 760px) {
+    .grievance-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grievance-contact-card {
+        padding: 17px;
+    }
+}
+/* UIDAI Official Website Card */
+.service-card.website-card {
+    --accent: #2457a7;
+}
+
+.results-grid .website-card {
+    grid-column: 1 / -1;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, #eef4ff, #ffffff 75%);
+    border-top-width: 5px;
+    box-shadow: 0 5px 18px rgba(36, 87, 167, 0.10);
+}
+
+.website-card .website-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.website-card .website-info {
+    flex: 1;
+}
+
+.website-card .website-info h3 {
+    margin-bottom: 7px;
+    font-size: 21px;
+}
+
+.website-card .website-info p {
+    margin-bottom: 0;
+}
+
+.website-card .website-button {
+    flex: 0 0 230px;
+    width: 230px;
+    min-height: 48px;
+    margin-top: 0;
+    background: #2457a7;
+    border-color: #2457a7;
+}
+
+@media (max-width: 760px) {
+    .results-grid .website-card {
+        padding: 20px 16px;
+    }
+
+    .website-card .website-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .website-card .website-button {
+        flex: 1;
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -691,6 +864,126 @@ main{padding-bottom:32px}
   </article>
 </template>
 
+<template id="websiteCardTemplate">
+    <article class="service-card website-card">
+
+        <div class="website-content">
+
+            <div class="website-info">
+
+                <div class="service-card-kicker">
+                    <span class="card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/>
+                            <path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/>
+
+                        </svg>
+                    </span>
+
+                    <p class="service-kicker">
+                        OFFICIAL UIDAI PORTAL
+                    </p>
+                </div>
+
+                <h3>UIDAI Official Website</h3>
+
+                <p>
+                    Visit the official UIDAI website to explore Aadhaar
+                    services, online facilities, important updates and
+                    other Aadhaar-related information.
+                </p>
+
+            </div>
+
+            <a
+                class="service-button website-button"
+                href="https://uidai.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Visit UIDAI Website
+
+            </a>
+
+        </div>
+
+    </article>
+</template>
+
+<!-- Grievance Contact Options -->
+<template id="grievanceContactTemplate">
+
+    <div class="grievance-contact-grid">
+
+        <!-- Call UIDAI Helpline -->
+        <a href="tel:1947"
+           class="grievance-contact-card phone"
+           aria-label="Call UIDAI helpline at 1947">
+
+            <span class="grievance-contact-icon">
+                <i class="fa-solid fa-phone-volume"></i>
+            </span>
+
+            <h3>Call UIDAI Helpline</h3>
+
+            <span class="contact-number">1947</span>
+
+            <p>
+                For queries, complaints,
+                assistance and grievance resolution,
+                contact the UIDAI toll-free helpline.
+            </p>
+
+            <span class="contact-action">
+                <i class="fa-solid fa-phone"></i>
+                Call on 1947 – Click Here
+            </span>
+
+        </a>
+
+
+        <!-- Email UIDAI -->
+        <a href="mailto:help@uidai.gov.in"
+           class="grievance-contact-card email"
+           aria-label="Email UIDAI at help@uidai.gov.in">
+
+            <span class="grievance-contact-icon">
+                <i class="fa-solid fa-envelope"></i>
+            </span>
+
+            <h3>Email UIDAI Helpdesk</h3>
+
+            <span class="contact-number"
+                  style="font-size:17px;">
+                help@uidai.gov.in
+            </span>
+
+            <p>
+                For assistance and grievance-related
+                queries, write to the UIDAI helpdesk
+                through email.
+            </p>
+
+            <span class="contact-action">
+                <i class="fa-solid fa-paper-plane"></i>
+                Email UIDAI – Click Here
+            </span>
+
+        </a>
+
+    </div>
+
+</template>
+
 
 <template id="roCardTemplate">
   <article class="service-card ro-card">
@@ -763,20 +1056,39 @@ main{padding-bottom:32px}
     return document.getElementById(id).content.cloneNode(true);
   }
 
-  function showResults(title, cards) {
+  
+function showResults(title, cards, layout = "") {
     resultsGrid.replaceChildren();
+
     resultsHeading.textContent = title;
-    cards.forEach(id => resultsGrid.appendChild(cloneTemplate(id)));
-    resultsGrid.classList.toggle("one-card", cards.length === 1);
+
+    cards.forEach(id => {
+        resultsGrid.appendChild(cloneTemplate(id));
+    });
+
+    resultsGrid.classList.toggle(
+        "one-card",
+        cards.length === 1
+    );
+
+    // Apply special layout only for grievance flow
+    resultsGrid.classList.toggle(
+        "grievance-results",
+        layout === "grievance"
+    );
+
     resultsSection.classList.remove("hidden");
-    // Translate newly inserted cards using the currently loaded dictionary.
+
+    // Translate newly inserted cards
     if (window.i18n && typeof window.i18n.translatePage === "function") {
-      window.i18n.translatePage();
+        window.i18n.translatePage();
     } else if (typeof window.translatePage === "function") {
-      window.translatePage();
+        window.translatePage();
     }
+
     scrollToSection(resultsSection);
-  }
+}
+
 
   function resetPressed(container) {
     container.querySelectorAll(".choice-card").forEach(button => button.setAttribute("aria-pressed", "false"));
@@ -797,9 +1109,20 @@ main{padding-bottom:32px}
       } else if (service === "update") {
         updateTypeSection.classList.remove("hidden");
         scrollToSection(updateTypeSection);
-      } else if (service === "grievance") {
-        showResults("Regional Office assistance", ["roCardTemplate"]);
-      }
+      
+} else if (service === "grievance") {
+
+    showResults(
+        "Grievance Assistance",
+        [
+            "grievanceContactTemplate",
+            "roCardTemplate"
+        ],
+        "grievance"
+    );
+
+}
+
     });
   });
 
@@ -809,8 +1132,9 @@ main{padding-bottom:32px}
       button.setAttribute("aria-pressed", "true");
       const type = button.dataset.update;
 
-      if (type === "mobile_email" || type === "address") {
+if (type === "mobile_email") {
 
+    // Mobile Number & Email Update
     showResults(
         "Choose how you want to proceed",
         [
@@ -820,8 +1144,22 @@ main{padding-bottom:32px}
         ]
     );
 
+} else if (type === "address") {
+
+    // Address Update
+    showResults(
+        "Choose how you want to proceed",
+        [
+            "appCardTemplate",
+            "websiteCardTemplate",
+            "appointmentCardTemplate",
+            "walkinCardTemplate"
+        ]
+    );
+
 } else if (type === "other") {
 
+    // Other Updates
     showResults(
         "Choose an Aadhaar Seva Kendra service",
         [
