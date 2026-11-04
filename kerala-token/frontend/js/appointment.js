@@ -71,14 +71,17 @@ Select State
 </option>
 `;
 
-states.forEach(state=>{
+states.forEach(state => {
 
-stateSelect.innerHTML +=
-`
-<option value="${state}">
-${state}
-</option>
-`;
+    const displayName = state === "Kerala"
+        ? "Keralam"
+        : state;
+
+    stateSelect.innerHTML += `
+        <option value="${state}">
+            ${displayName}
+        </option>
+    `;
 
 });
 

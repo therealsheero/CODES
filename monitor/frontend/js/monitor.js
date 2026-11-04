@@ -16,6 +16,15 @@ async function api(endpoint, options = {}) {
   return res.json();
 }
 
+function displayStateName(name) {
+    if (!name) return name;
+
+    return String(name).replace(
+        /\bKerala\b/gi,
+        "Keralam"
+    );
+}
+
 function getFilters() {
   const region = document.getElementById("filterRegion").value;
   const from = document.getElementById("filterFrom").value;
@@ -318,7 +327,12 @@ async function loadDemographicChart() {
     else grouped[d.age_group].other += d.count;
   });
   
-  const labels = Object.keys(grouped).sort();
+  const labels = Object.keys(grouped).sort((a, b) => {
+    const ageA = Number(a.match(/\d+/)?.[0] ?? Infinity);
+    const ageB = Number(b.match(/\d+/)?.[0] ?? Infinity);
+
+    return ageA - ageB;
+});
   
   const ctx = document.getElementById('demographicChart').getContext('2d');
   if (charts.demographicChart) charts.demographicChart.destroy();
@@ -377,7 +391,7 @@ async function loadRegionCompare() {
   charts.regionCompareChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: data.data.map(d => d.label),
+      labels: data.data.map(d => displayStateName(d.label)),
       datasets: [{
         label: 'Total Tokens',
         data: data.data.map(d => d.total_tokens),
@@ -435,7 +449,7 @@ async function loadDistrictTable() {
   data.data.forEach(d => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${d.area || d.district || ''}</td>
+      <td>${displayStateName(d.area || d.district || '')}</td>
       <td>${d.count.toLocaleString()}</td>
       <td>${(d.percentage || 0).toFixed(2)}%</td>
     `;
@@ -456,7 +470,7 @@ async function loadSlotTable() {
     
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${d.label || d.region}</td>
+      <td>${displayStateName(d.label || d.region)}</td>
       <td>${d.appointment_total}</td>
       <td>${d.appointment_booked}</td>
       <td>${d.walkin_total}</td>
@@ -811,8 +825,8 @@ async function loadMap() {
 
                     if (!region) {
                         layer.bindPopup(
-                            `<b>${stateName}</b>`
-                        );
+    `<b>${displayStateName(stateName)}</b>`
+);
                         return;
                     }
 
@@ -825,23 +839,23 @@ async function loadMap() {
                     if (!regionData) return;
 
                     layer.bindTooltip(
-                        `<b>${stateName}</b><br>
-                         RO: ${regionData.label || regionData.region}<br>
-                         Tokens: ${Number(
-                             regionData.total_tokens || 0
-                         ).toLocaleString()}`,
-                        {
-                            sticky: true
-                        }
-                    );
+    `<b>${displayStateName(stateName)}</b><br>
+     RO: ${regionData.label || regionData.region}<br>
+     Tokens: ${Number(
+         regionData.total_tokens || 0
+     ).toLocaleString()}`,
+    {
+        sticky: true
+    }
+);
 
                     layer.bindPopup(`
-                        <b>${stateName}</b><br>
-                        RO: ${regionData.label || regionData.region}<br>
-                        Tokens: ${Number(
-                            regionData.total_tokens || 0
-                        ).toLocaleString()}
-                    `);
+    <b>${displayStateName(stateName)}</b><br>
+    RO: ${regionData.label || regionData.region}<br>
+    Tokens: ${Number(
+        regionData.total_tokens || 0
+    ).toLocaleString()}
+`);
 
                 }
 
