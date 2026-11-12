@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="confirmation.slip_title_walkin">Token Slip</title>
+  <link rel="icon" href="./assets/favicon.svg?v=2">
+  <link rel="stylesheet" href="./css/style.css?v=9">
+  <script src="./js/i18n.js?v=3"></script>
+</head>
+
+<body>
+
+<header class="gov-header">
+  <div class="gov-left">
+    <img src="./assets/india-emblem.png" alt="Government of India Logo" />
+  </div>
+  <div class="gov-center">
+    <h1 data-i18n="header.title">Government of India</h1>
+    <p data-i18n="header.subtitle_index">Appointment & Walk-in Token Management System</p>
+  </div>
+  <div class="gov-right">
+    <img
+        src="assets/logo/department-logo.png"
+        alt="Department Logo"
+    >
+</div>
+</header>
+
+<div class="actions">
+  <button class="download-btn" onclick="downloadSlip()" data-i18n="form.buttons.download_slip">⬇ Download Slip (PDF)</button>
+  <button class="print-btn" onclick="window.print()" data-i18n="form.buttons.print_slip">🖨 Print</button>
+</div>
+
+<div class="slip">
+  <h2 id="slipTitle">Token Slip</h2>
+  <div id="slipContent"></div>
+</div>
+
+<div id="outsideSections"></div>
+
+<script src="./js/html2pdf.bundle.min.js"></script>
+
+<script>
+
+let TOKENS_PER_HOUR = 30;
+
+
+async function fetchTokensPerHour(date) {
+    if (!date) {
+        throw new Error("Service date is missing");
+    }
+
+    const res = await fetch(
+        `/gujarat/api/settings/tokens-per-hour?date=${encodeURIComponent(date)}`
+    );
+
+    if (!res.ok) {
+        throw new Error(
+            `Failed to fetch tokens per hour. HTTP ${res.status}`
+        );
+    }
+
+    const result = await res.json();
+
+    const speed = Number(result.tokensPerHour);
+
+    if (!Number.isFinite(speed) || speed <= 0) {
+        throw new Error("Invalid tokens-per-hour setting received");
+    }
+
+    TOKENS_PER_HOUR = speed;
+
+    console.log("Confirmation slip - Tokens per hour:", TOKENS_PER_HOUR);
+}
+
+
+let WORK_START_TIME="11:00";
+
+
+async function fetchWorkStartTime(date) {
+    if (!date) {
+        throw new Error("Service date is missing");
+    }
+
+    const res = await fetch(
+        `/gujarat/api/settings/work-start-time?date=${encodeURIComponent(date)}`
+    );
+
+    if (!res.ok) {
+        throw new Error(
+            `Failed to fetch work start time. HTTP ${res.status}`
+        );
+    }
+
+    const result = await res.json();
+
+    if (!result.workStartTime) {
+        throw new Error("Work start time is missing");
+    }
+
+    WORK_START_TIME = result.workStartTime;
+
+    console.log("Confirmation slip - Work start time:", WORK_START_TIME);
+}
+
+
+function getExpectedServiceTime(token) {
+
+  if (!token) {
+    return "";
+  }
+
+  const num =
+    parseInt(token.split("-")[0]);
+
+  let slotIndex =
+    Math.floor((num - 1) / TOKENS_PER_HOUR);
+
+  if (slotIndex > 6) {
+    slotIndex = 6;
+  }
+
+  const [hour, minute] =
+    WORK_START_TIME.split(":").map(Number);
+
+  let startMinutes =
+    (hour * 60) + minute;
+
+  startMinutes += slotIndex * 60;
+
+  const endMinutes =
+    startMinutes + 60;
+
+  function formatTime(totalMinutes) {
+
+    let h =
+      Math.floor(totalMinutes / 60);
+
+    const m = totalMinutes % 60;
+
+    const ampm =
+      h >= 12 ? "PM" : "AM";
+
+    if (h > 12) {
+      h -= 12;
+    }
+
+    if (h === 0) {
+      h = 12;
+    }
+
+    return `${h}:${String(m).padStart(2, "0")} ${ampm}`;
+  }
+
+  return `${formatTime(startMinutes)} – ${formatTime(endMinutes)}`;
+}
+
+  function formatDisplayToken(fullToken) {
+    const parts = fullToken.split("-");
+    return `${parts[0]}-${parts[2]}`; 
+  }
+
+    const data = JSON.parse(localStorage.getItem("tokenData"));
+  const slipContent = document.getElementById("slipContent");
+  const slipTitle = document.getElementById("slipTitle");
+  const outsideSections = document.getElementById("outsideSections");
+
+  if (!data) {
+  
+  slipContent.innerHTML = `<p>${window.t("confirmation.no_data", "No token data found.")}</p>`;
+} else {
+
+  (async function() {
+
+    
+const serviceDate = data.date || data.selected_date;
+
+if (!serviceDate) {
+    throw new Error("Token service date is missing");
+}
+
+await fetchTokensPerHour(serviceDate);
+await fetchWorkStartTime(serviceDate);
+
+
+    const isWalkin = data.mode === "W";
+
+    slipTitle.innerText = isWalkin
+      ? window.t("confirmation.slip_title_walkin", "Walk-in Token Slip")
+      : window.t("confirmation.slip_title_appointment", "Appointment Token Slip");
+      const tokenParts = data.token.split("-");
+const mainToken = `${tokenParts[0]}-${tokenParts[1]}`;
+const aadhaarPart = tokenParts[2];
+
+const settingsRes =
+await fetch("/gujarat/api/settings");
+
+const settingsResponse =
+await settingsRes.json();
+
+const rules = {};
+
+const settings =
+settingsResponse.rules || settingsResponse;
+
+settings.forEach(r => {
+
+  rules[r.rule_key] =
+    r.rule_value;
+
+});
+
+const watermark =
+rules.watermark_text || "";
+
+const row =
+Array(10)
+.fill(watermark)
+.join("     ");
+
+const repeated =
+Array(20)
+.fill(row)
+.join("\n");
+
+document.querySelector(".slip")
+.setAttribute(
+"data-watermark",
+repeated
+);
+
+const officeAddress =
+`
+${rules.office_display_en || ""}
+<br>
+${rules.office_display_hi || ""}
+`;
+
+    slipContent.innerHTML = `
+    <div style="
+      display:block;
+      background:#fff3e0;
+      border:2px solid #ff9800;
+      border-radius:8px;
+      padding:12px 16px;
+      margin-bottom:15px;
+  ">
+
+<p id="officeAddressSlip"
+style="
+text-align:center;
+font-weight:700;
+color:#d84315;
+margin:0;
+font-size:15px;
+line-height:1.5;
+">
+${officeAddress}
+</p>
+  </div>
+      <div class="token-box">
+        <div class="token-label">${window.t("confirmation.token_number", "TOKEN NUMBER")}</div>
+        <div class="token-value">
+  ${mainToken}
+  <div style="font-size:28px; margin-top:5px;">
+    ${aadhaarPart}
+  </div>
+</div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:8px;">
+        <strong>${window.t("confirmation.expected_time", "Expected Service Time")}:</strong><br>
+        <span style="font-size:16px;">
+          ${getExpectedServiceTime(data.token)}
+        </span>
+      </div>
+
+      <p><strong>${isWalkin ? window.t("confirmation.visit_date", "Visit Date") : window.t("confirmation.appointment_date", "Appointment Date")}:</strong>
+        ${serviceDate}</p>
+        <p><strong>QRC:</strong> ${data.qrc}</p>
+      <p><strong>${window.t("form.labels.name", "Name")}:</strong> ${data.name}</p>
+      <p><strong>${window.t("form.labels.mobile", "Mobile")}:</strong> ${data.mobile}</p>
+      <p><strong>${window.t("form.labels.state", "State")}:</strong> ${data.state}</p>
+      <p><strong>${window.t("form.labels.district", "District")}:</strong> ${data.district}</p>
+      <p><strong>${window.t("form.labels.service_type", "Service Type")}:</strong> ${data.service_type}</p>
+      <p><strong>${window.t("confirmation.generated_on", "Generated On")}:</strong>
+        ${new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true
+        })}
+      </p>
+
+      <hr>
+
+      <div style="font-size:13px;">
+        <strong>${window.t("confirmation.service_advisory_title", "Service Advisory:")}</strong><br>
+        ${window.t("confirmation.service_advisory_text", "Service before or after the scheduled time is subject to availability.")}
+      </div>
+    `;
+
+
+    outsideSections.innerHTML = `
+
+<div class="token-box">
+
+<strong>
+${window.t(
+"confirmation.download_aadhaar_app",
+"Download the new Aadhaar App"
+)}
+</strong>
+<br>
+
+<a href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
+target="_blank">
+
+${window.t(
+"confirmation.download_android",
+"Download for Android"
+)}
+
+</a>
+
+<br>
+
+<a href="https://apps.apple.com/in/app/aadhaar/id6744029871"
+target="_blank">
+
+${window.t(
+"confirmation.download_ios",
+"Download for iOS"
+)}
+
+</a>
+
+
+<hr>
+
+
+<strong>
+${window.t(
+"confirmation.biometric_rules_title",
+"Biometric Update Information:"
+)}
+</strong>
+
+
+<ul>
+
+<li>
+${window.t(
+"confirmation.biometric_rule_children",
+"Children: Mandatory biometric update for age group 5–17 is free of cost."
+)}
+</li>
+
+
+<li>
+${window.t(
+"confirmation.biometric_rule_adults",
+"Adults: It is recommended to update biometrics every 10 years to maintain data accuracy."
+)}
+</li>
+
+</ul>
+
+
+<hr>
+
+
+<strong>
+${window.t(
+"confirmation.bhuvan_notice_title",
+"Aadhaar Update Centre Information:"
+)}
+</strong>
+
+
+<br>
+
+
+${window.t(
+"confirmation.bhuvan_notice_text",
+"To update your Aadhaar, please visit your nearest Enrolment/Update Centre. The list of centres is available on the UIDAI Bhuvan Portal:"
+)}
+
+
+<br>
+
+<span style="word-break:break-all;">
+https://bhuvan.nrsc.gov.in/aadhaar/
+</span>
+
+
+</div>
+
+`;
+
+  })();
+
+
+
+  }
+</script>
+
+<script>
+  function downloadSlip() {
+    const slip = document.querySelector(".slip");
+
+    if (!slip || !data) {
+      alert("Unable to download slip");
+      return;
+    }
+
+    const options = {
+      margin: 0.3,
+      filename: `${data.token}.pdf`,
+      image: { type: "jpeg", quality: 1 },
+      html2canvas: { 
+        scale: 2,
+        scrollY: 0
+      },
+      jsPDF: { 
+        unit: "in", 
+        format: "a4", 
+        orientation: "portrait" 
+      },
+      pagebreak: { mode: ['avoid-all'] }
+    };
+
+    html2pdf().set(options).from(slip).save();
+  }
+</script>
+
+<script>
+  history.pushState(null, null, location.href);
+  window.onpopstate = function () {
+    history.go(1);
+  };
+</script>
+
+
+
+<script>
+  const tokenData = localStorage.getItem("tokenData");
+  if (!tokenData) {
+    alert("Invalid access. Please generate a token first.");
+    window.location.href = "./";
+  }
+</script>
+
+<script>
+  setTimeout(() => {
+    localStorage.removeItem("tokenData");
+  }, 1000);
+</script>
+</body>
+</html>
+
+
+
+
