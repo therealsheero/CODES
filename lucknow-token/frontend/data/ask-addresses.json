@@ -1,0 +1,414 @@
+[
+    {
+        "city": "Lucknow",
+        "cityHi": "लखनऊ",
+        "address": "Ratan Square Building, Burlington Chauraha, Vidhan Sabha Road , Hatratganj, Lucknow - 226001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ratan%20Square%20Building%2C%20Burlington%20Chauraha%2C%20Vidhan%20Sabha%20Road%20%2C%20Hatratganj%2C%20Lucknow%20-%20226001%2C%20Lucknow%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Agra",
+        "cityHi": "आगरा",
+        "address": "M808, NH-2, Khandari Bypass Road, Near Mahindra Coaching, Agra - 282002",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=M808%2C%20NH-2%2C%20Khandari%20Bypass%20Road%2C%20Near%20Mahindra%20Coaching%2C%20Agra%20-%20282002%2C%20Agra%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Noida",
+        "cityHi": "नोएडा",
+        "address": "Glaxy Blue Sapphire Plaza, Lower Ground Floor, Sector 4, Greater Noida West, Gautam Buddha Nagar - 201301",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Glaxy%20Blue%20Sapphire%20Plaza%2C%20Lower%20Ground%20Floor%2C%20Sector%204%2C%20Greater%20Noida%20West%2C%20Gautam%20Buddha%20Nagar%20-%20201301%2C%20Noida%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Saharanpur",
+        "cityHi": "सहारनपुर",
+        "address": "Building No. 1, Pant Vihar Colony, Opp. Sahiram Hospital, ITC Circuit House Road, Near Hasanpur Chowk, Saharanpur - 247001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Building%20No.%201%2C%20Pant%20Vihar%20Colony%2C%20Opp.%20Sahiram%20Hospital%2C%20ITC%20Circuit%20House%20Road%2C%20Near%20Hasanpur%20Chowk%2C%20Saharanpur%20-%20247001%2C%20Saharanpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kanpur",
+        "cityHi": "कानपुर",
+        "address": "BSNL Office, Upper Ground Floor, Mall Road, Opp. SBI, Kanpur - 208001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Upper%20Ground%20Floor%2C%20Mall%20Road%2C%20Opp.%20SBI%2C%20Kanpur%20-%20208001%2C%20Kanpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Gonda",
+        "cityHi": "गोंडा",
+        "address": "BSNL Office, Gonda, Near Bus Stop, Gonda - 27001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Gonda%2C%20Near%20Bus%20Stop%2C%20Gonda%20-%2027001%2C%20Gonda%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Meerut",
+        "cityHi": "मेरठ",
+        "address": "Ground Floor, Shop no 1 to 10, Mayfair Plaza, Baghpat Road, Meerut - 250004",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%2C%20Shop%20no%201%20to%2010%2C%20Mayfair%20Plaza%2C%20Baghpat%20Road%2C%20Meerut%20-%20250004%2C%20Meerut%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Moradabad",
+        "cityHi": "मुरादाबाद",
+        "address": "Oil Mill Compund, Opposite Public Dharm Kata, Moradabad - 244001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Oil%20Mill%20Compund%2C%20Opposite%20Public%20Dharm%20Kata%2C%20Moradabad%20-%20244001%2C%20Moradabad%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Varanasi",
+        "cityHi": "वाराणसी",
+        "address": "D65/243, C-1-A, Lahartara, DLW Road, Varanasi - 221002",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=D65%2F243%2C%20C-1-A%2C%20Lahartara%2C%20DLW%20Road%2C%20Varanasi%20-%20221002%2C%20Varanasi%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Prayagraj",
+        "cityHi": "प्रयागराज",
+        "address": "US Tower, 42/24/1 First Floor, Opp. Legend Hotel, Civil Lines, Prayagraj - 211001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=US%20Tower%2C%2042%2F24%2F1%20First%20Floor%2C%20Opp.%20Legend%20Hotel%2C%20Civil%20Lines%2C%20Prayagraj%20-%20211001%2C%20Prayagraj%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Gorakhpur",
+        "cityHi": "गोरखपुर",
+        "address": "RR Builder, Near Reliance Digital, PO Kunraghar, Mohaddipur, Gorakhpur - 273008",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=RR%20Builder%2C%20Near%20Reliance%20Digital%2C%20PO%20Kunraghar%2C%20Mohaddipur%2C%20Gorakhpur%20-%20273008%2C%20Gorakhpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Ghaziabad",
+        "cityHi": "गाज़ियाबाद",
+        "address": "Sahibabad NCRTC Metro Station, Ghaziabad - 201010",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sahibabad%20NCRTC%20Metro%20Station%2C%20Ghaziabad%20-%20201010%2C%20Ghaziabad%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Aligarh",
+        "cityHi": "अलीगढ़",
+        "address": "G.T. Road, Naurangabad Near Etah Chungi, Aligarh - 202001.",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=G.T.%20Road%2C%20Naurangabad%20Near%20Etah%20Chungi%2C%20Aligarh%20-%20202001.%2C%20Aligarh%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Ayodhya",
+        "cityHi": "अयोध्या",
+        "address": "BSNL Office, Ground Floor, Telephone Exchange Building, Lajpatnagar, Near Awantika Resturent, Ayodhya - 224001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Ground%20Floor%2C%20Telephone%20Exchange%20Building%2C%20Lajpatnagar%2C%20Near%20Awantika%20Resturent%2C%20Ayodhya%20-%20224001%2C%20Ayodhya%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Mirzapur",
+        "cityHi": "मिर्ज़ापुर",
+        "address": "BSNL office, Angarh Raod, Dankinganj, Mirzapur - 231001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20office%2C%20Angarh%20Raod%2C%20Dankinganj%2C%20Mirzapur%20-%20231001%2C%20Mirzapur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Chandauli",
+        "cityHi": "चंदौली",
+        "address": "BSNL Office 1273, Manasnagar Railway Colony Road, Manash Colony, Mughal Sarai, Chanduali - 232101.",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%201273%2C%20Manasnagar%20Railway%20Colony%20Road%2C%20Manash%20Colony%2C%20Mughal%20Sarai%2C%20Chanduali%20-%20232101.%2C%20Chandauli%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Etawah",
+        "cityHi": "इटावा",
+        "address": "Ground Floor, Khasra No.318 Madhav Avenuenext to JK Hospital, Near Vivek Vihar Colony, Etawah - 206001.",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%2C%20Khasra%20No.318%20Madhav%20Avenuenext%20to%20JK%20Hospital%2C%20Near%20Vivek%20Vihar%20Colony%2C%20Etawah%20-%20206001.%2C%20Etawah%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Hapur",
+        "cityHi": "हापुड़",
+        "address": "Plot No C1/C2, Ground Floor, Avatika Enclave Modinagar Road, Hapur - 245101",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Plot%20No%20C1%2FC2%2C%20Ground%20Floor%2C%20Avatika%20Enclave%20Modinagar%20Road%2C%20Hapur%20-%20245101%2C%20Hapur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Muzaffarnagar",
+        "cityHi": "मुज़फ्फरनगर",
+        "address": "Gata/Arazi No. 312, Mand Mark, Rampuri Revenue Village, Muzaffarnagar - 251002",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gata%2FArazi%20No.%20312%2C%20Mand%20Mark%2C%20Rampuri%20Revenue%20Village%2C%20Muzaffarnagar%20-%20251002%2C%20Muzaffarnagar%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Mainpuri",
+        "cityHi": "मैनपुरी",
+        "address": "Madhav Guest House, Agrawal Mohalla, Mainpuri Khas, Mainpuri - 205001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Madhav%20Guest%20House%2C%20Agrawal%20Mohalla%2C%20Mainpuri%20Khas%2C%20Mainpuri%20-%20205001%2C%20Mainpuri%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Raebareli",
+        "cityHi": "रायबरेली",
+        "address": "232, Village Ahmadpur Najul, Malikamau, Sultanpur Road, Raebareli - 229010",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=232%2C%20Village%20Ahmadpur%20Najul%2C%20Malikamau%2C%20Sultanpur%20Road%2C%20Raebareli%20-%20229010%2C%20Raebareli%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Unnao",
+        "cityHi": "उन्नाव",
+        "address": "1073, Adarsh Nagar, Unnao - 209801",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=1073%2C%20Adarsh%20Nagar%2C%20Unnao%20-%20209801%2C%20Unnao%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Amethi",
+        "cityHi": "अमेठी",
+        "address": "Mahendra Service Centre, Ward no 9. Misrauli, Gauri Gank, Amethi - 227409",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mahendra%20Service%20Centre%2C%20Ward%20no%209.%20Misrauli%2C%20Gauri%20Gank%2C%20Amethi%20-%20227409%2C%20Amethi%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Azamgarh",
+        "cityHi": "आज़मगढ़",
+        "address": "Aadhar Seva Kendra, Ground Floor Gomti Grami Nidhi, Ram Kodar Azamatpur Block Palhani, Sadar Azamgarh By Pass Road, Azamgarh - 276001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Aadhar%20Seva%20Kendra%2C%20Ground%20Floor%20Gomti%20Grami%20Nidhi%2C%20Ram%20Kodar%20Azamatpur%20Block%20Palhani%2C%20Sadar%20Azamgarh%20By%20Pass%20Road%2C%20Azamgarh%20-%20276001%2C%20Azamgarh%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Ballia",
+        "cityHi": "बलिया",
+        "address": "Kunwar Singh Chauraha, Vikas Bhawan Road, Opp. Krishi Bhawan, Ballia - 277001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kunwar%20Singh%20Chauraha%2C%20Vikas%20Bhawan%20Road%2C%20Opp.%20Krishi%20Bhawan%2C%20Ballia%20-%20277001%2C%20Ballia%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Basti",
+        "cityHi": "बस्ती",
+        "address": "Pach Pedia Road, Nanak Nagar, Khirighat Post Office Madwa Nagar, Basti - 272001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pach%20Pedia%20Road%2C%20Nanak%20Nagar%2C%20Khirighat%20Post%20Office%20Madwa%20Nagar%2C%20Basti%20-%20272001%2C%20Basti%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Bijnor",
+        "cityHi": "बिजनौर",
+        "address": "KH. No. 191/1, Bijnore-Haridwar Marg, Mandawar Road, Chichroli Bangar, Bijnore - 246701",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=KH.%20No.%20191%2F1%2C%20Bijnore-Haridwar%20Marg%2C%20Mandawar%20Road%2C%20Chichroli%20Bangar%2C%20Bijnore%20-%20246701%2C%20Bijnor%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Bulandshahr",
+        "cityHi": "बुलंदशहर",
+        "address": "Ground Floor GT Rd, MMR Mall Chandpur, Bulandshahar - 203001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%20GT%20Rd%2C%20MMR%20Mall%20Chandpur%2C%20Bulandshahar%20-%20203001%2C%20Bulandshahr%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Ghazipur",
+        "cityHi": "गाज़ीपुर",
+        "address": "Ground Floor, Adhar Seva Kendra, Near Samsung Service Center, R Kachaari Road Mauhabag, Opp. Afeem factory, Ghazipur - 233001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%2C%20Adhar%20Seva%20Kendra%2C%20Near%20Samsung%20Service%20Center%2C%20R%20Kachaari%20Road%20Mauhabag%2C%20Opp.%20Afeem%20factory%2C%20Ghazipur%20-%20233001%2C%20Ghazipur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Hathras",
+        "cityHi": "हाथरस",
+        "address": "KDR Complex Ground Floor, No 5/5, Opposite Mg Polytechnic, Hathras - 204101",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=KDR%20Complex%20Ground%20Floor%2C%20No%205%2F5%2C%20Opposite%20Mg%20Polytechnic%2C%20Hathras%20-%20204101%2C%20Hathras%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Mau",
+        "cityHi": "मऊ",
+        "address": "Ground Floor, Near Canara Bank, H.No Shahdatpura Bhiti Road, MAU - 275109",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%2C%20Near%20Canara%20Bank%2C%20H.No%20Shahdatpura%20Bhiti%20Road%2C%20MAU%20-%20275109%2C%20Mau%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Prataphgarh",
+        "cityHi": "प्रतापगढ़",
+        "address": "BSNL Office, Dahilamau Pure Ishwarnath, Bela Pratapgarh - 230001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Dahilamau%20Pure%20Ishwarnath%2C%20Bela%20Pratapgarh%20-%20230001%2C%20Prataphgarh%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Sitapur",
+        "cityHi": "सीतापुर",
+        "address": "Ground Floor, Lashamanpur Near Navin Chouk, Hardoi Bypass, Sitapur - 261001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ground%20Floor%2C%20Lashamanpur%20Near%20Navin%20Chouk%2C%20Hardoi%20Bypass%2C%20Sitapur%20-%20261001%2C%20Sitapur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Auraiya",
+        "cityHi": "औरैया",
+        "address": "Tilak Nagar South Biknampur, Etawah Bypass Road, Auraiya - 206122",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tilak%20Nagar%20South%20Biknampur%2C%20Etawah%20Bypass%20Road%2C%20Auraiya%20-%20206122%2C%20Auraiya%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Bahraich",
+        "cityHi": "बहराइच",
+        "address": "27, Near Maidani Baba Mandir, Ghasiyaripura, Bahraich - 271801",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=27%2C%20Near%20Maidani%20Baba%20Mandir%2C%20Ghasiyaripura%2C%20Bahraich%20-%20271801%2C%20Bahraich%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Balrampur",
+        "cityHi": "बलरामपुर",
+        "address": "Rishta Darbar Building, Near District Hospital, Balrampur - 271201",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Rishta%20Darbar%20Building%2C%20Near%20District%20Hospital%2C%20Balrampur%20-%20271201%2C%20Balrampur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Budaun",
+        "cityHi": "बदायूँ",
+        "address": "Dataganj Tiraha, Near Union Bank of India, Budaun - 243601",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Dataganj%20Tiraha%2C%20Near%20Union%20Bank%20of%20India%2C%20Budaun%20-%20243601%2C%20Budaun%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Deoria",
+        "cityHi": "देवरिया",
+        "address": "Ward No-03, Mehadapurwa, Near Honda Agency, Gorakhpur Road, Deoria - 274309",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ward%20No-03%2C%20Mehadapurwa%2C%20Near%20Honda%20Agency%2C%20Gorakhpur%20Road%2C%20Deoria%20-%20274309%2C%20Deoria%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Etah",
+        "cityHi": "एटा",
+        "address": "PL Garden, Etah Shikohabad Road, Etah - 207001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=PL%20Garden%2C%20Etah%20Shikohabad%20Road%2C%20Etah%20-%20207001%2C%20Etah%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Fatehpur",
+        "cityHi": "फतेहपुर",
+        "address": "BSNL Office, Near Railway Station, Fatehpur - 212601",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Near%20Railway%20Station%2C%20Fatehpur%20-%20212601%2C%20Fatehpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Hardoi",
+        "cityHi": "हरदोई",
+        "address": "133/1, Civil Lines, Hardoi - 241001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=133%2F1%2C%20Civil%20Lines%2C%20Hardoi%20-%20241001%2C%20Hardoi%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kanpur Dehat",
+        "cityHi": "कानपुर देहात",
+        "address": "Opp. of BSA office, Mati road, Akbarpur, Kanpur Dehat - 209101",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Opp.%20of%20BSA%20office%2C%20Mati%20road%2C%20Akbarpur%2C%20Kanpur%20Dehat%20-%20209101%2C%20Kanpur%20Dehat%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kheri",
+        "cityHi": "खीरी",
+        "address": "Gola LRP Road, Opp. Royal Paradise, Lahkimpur Kheri - 262701",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gola%20LRP%20Road%2C%20Opp.%20Royal%20Paradise%2C%20Lahkimpur%20Kheri%20-%20262701%2C%20Kheri%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kushinagar",
+        "cityHi": "कुशीनगर",
+        "address": "Kidwai Nagar, Near Sarar Hospital, Chawani, Padrauna, Kushinagar - 274309",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kidwai%20Nagar%2C%20Near%20Sarar%20Hospital%2C%20Chawani%2C%20Padrauna%2C%20Kushinagar%20-%20274309%2C%20Kushinagar%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Bareilly",
+        "cityHi": "बरेली",
+        "address": "C-208, Patel Nagar, Rajender Nagar, Bareilly - 243122",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=C-208%2C%20Patel%20Nagar%2C%20Rajender%20Nagar%2C%20Bareilly%20-%20243122%2C%20Bareilly%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Jaunpur",
+        "cityHi": "जौनपुर",
+        "address": "Pacchatiya Tiraha Pathak, Near Petrol Pump, Chaukiya Road, Vishesharpur, Jaunpur - 222002",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pacchatiya%20Tiraha%20Pathak%2C%20Near%20Petrol%20Pump%2C%20Chaukiya%20Road%2C%20Vishesharpur%2C%20Jaunpur%20-%20222002%2C%20Jaunpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Pilibhit",
+        "cityHi": "पीलीभीत",
+        "address": "Civil lines North, Near ICICI Bank, Pilibhit - 262001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Civil%20lines%20North%2C%20Near%20ICICI%20Bank%2C%20Pilibhit%20-%20262001%2C%20Pilibhit%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Mathura",
+        "cityHi": "मथुरा",
+        "address": "NH19 Govardhan Chauraha, Mathura - 281502",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=NH19%20Govardhan%20Chauraha%2C%20Mathura%20-%20281502%2C%20Mathura%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Sambhal",
+        "cityHi": "संभल",
+        "address": "BSNL Office, Alam Sarai Road, Sambhal -  244302",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=BSNL%20Office%2C%20Alam%20Sarai%20Road%2C%20Sambhal%20-%20%20244302%2C%20Sambhal%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Shahjahanpur",
+        "cityHi": "शाहजहाँपुर",
+        "address": "Sharma Ji Ka Dera, Near Charkhamba, Shahjahanpur - 242001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sharma%20Ji%20Ka%20Dera%2C%20Near%20Charkhamba%2C%20Shahjahanpur%20-%20242001%2C%20Shahjahanpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Shamli",
+        "cityHi": "शामली",
+        "address": "Shamli Kairana Road, Opposite Rampuram Colony, Shamli - 247776",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Shamli%20Kairana%20Road%2C%20Opposite%20Rampuram%20Colony%2C%20Shamli%20-%20247776%2C%20Shamli%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Sonbhadra",
+        "cityHi": "सोनभद्र",
+        "address": "Shop 224 B, Bus Stand Road, New Colony, Robertsganj, Sonbhadra - 231216",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Shop%20224%20B%2C%20Bus%20Stand%20Road%2C%20New%20Colony%2C%20Robertsganj%2C%20Sonbhadra%20-%20231216%2C%20Sonbhadra%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Ambedkar Nagar",
+        "cityHi": "अंबेडकर नगर",
+        "address": "Ayodhya Road, Near Fire Station, Patel Nagar, Akbarpur -224122",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ayodhya%20Road%2C%20Near%20Fire%20Station%2C%20Patel%20Nagar%2C%20Akbarpur%20-224122%2C%20Ambedkar%20Nagar%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Amroha",
+        "cityHi": "अमरोहा",
+        "address": "Raipur Khurd, Opp. DM office, Amroha - 244221",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Raipur%20Khurd%2C%20Opp.%20DM%20office%2C%20Amroha%20-%20244221%2C%20Amroha%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Farrukhabad",
+        "cityHi": "फर्रुखाबाद",
+        "address": "Near Dhilawal Chauraha, Farrukhabad - 209625",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Near%20Dhilawal%20Chauraha%2C%20Farrukhabad%20-%20209625%2C%20Farrukhabad%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Hamirpur",
+        "cityHi": "हमीरपुर",
+        "address": "Near Dhilawal Chauraha, Farrukhabad - 209625",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Near%20Dhilawal%20Chauraha%2C%20Farrukhabad%20-%20209625%2C%20Hamirpur%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Jalaun",
+        "cityHi": "जालौन",
+        "address": "Jalaun Road, Near DM Office, Jalaun - 285001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Jalaun%20Road%2C%20Near%20DM%20Office%2C%20Jalaun%20-%20285001%2C%20Jalaun%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kasganj",
+        "cityHi": "कासगंज",
+        "address": "Opp. Maida Mill, Near Chandni Chauraha, Amanpur Road, Kasganj - 207123",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Opp.%20Maida%20Mill%2C%20Near%20Chandni%20Chauraha%2C%20Amanpur%20Road%2C%20Kasganj%20-%20207123%2C%20Kasganj%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Kaushambi",
+        "cityHi": "कौशांबी",
+        "address": "Azad Nagar, Near HP Petrol Pump, Manjhanpur, Kaushambi - 212207",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Azad%20Nagar%2C%20Near%20HP%20Petrol%20Pump%2C%20Manjhanpur%2C%20Kaushambi%20-%20212207%2C%20Kaushambi%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Sant Ravidas nagar",
+        "cityHi": "संत रविदास नगर",
+        "address": "Rajpura Chouraha, Bhadohi Nagar Palika, Sant Ravidas Nagar - 221401",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Rajpura%20Chouraha%2C%20Bhadohi%20Nagar%20Palika%2C%20Sant%20Ravidas%20Nagar%20-%20221401%2C%20Sant%20Ravidas%20nagar%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Shrawasti",
+        "cityHi": "श्रावस्ती",
+        "address": "Bhinga Market, Dahang, Lakadi Market Road, Shravasti - 271831",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bhinga%20Market%2C%20Dahang%2C%20Lakadi%20Market%20Road%2C%20Shravasti%20-%20271831%2C%20Shrawasti%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Siddharthnagar",
+        "cityHi": "सिद्धार्थनगर",
+        "address": "Ward No.7, Parsa Mahapatra, Siddharth Nagar - 241001",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ward%20No.7%2C%20Parsa%20Mahapatra%2C%20Siddharth%20Nagar%20-%20241001%2C%20Siddharthnagar%2C%20Uttar%20Pradesh%2C%20India"
+    },
+    {
+        "city": "Banda",
+        "cityHi": "बांदा",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Barabanki",
+        "cityHi": "बाराबंकी",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Kannauj",
+        "cityHi": "कन्नौज",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Maharajganj",
+        "cityHi": "महाराजगंज",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Rampur",
+        "cityHi": "रामपुर",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Sultanpur",
+        "cityHi": "सुल्तानपुर",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Sant Kabir Nagar",
+        "cityHi": "संत कबीर नगर",
+        "address": "Coming Soon"
+    },
+    {
+        "city": "Jhansi",
+        "cityHi": "झाँसी",
+        "address": "Coming Soon"
+    }
+]
