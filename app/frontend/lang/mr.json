@@ -215,6 +215,10 @@
   "free_service_title": "ही सेवा पूर्णपणे विनामूल्य आहे",
   "free_service_description": "कोणतेही पैसे किंवा सेवा शुल्क भरावे लागणार नाही.",
   "other_services_badge": "एकाधिक सेवा",
-  "other_services_hint": "अतिरिक्त सेवा पहा →"
+  "other_services_hint": "अतिरिक्त सेवा पहा →",
+  "visitor_counter_loading": "अभ्यागतांची संख्या लोड होत आहे...",
+"visitor_counter": "आपण {count}वे अभ्यागत आहात",
+"visitor_counter_error": "अभ्यागतांची संख्या सध्या उपलब्ध नाही",
+"enrollment_help_note": "आधार नोंदणी फक्त आधार सेवा केंद्रात (ASK) केली जाते."
 
 }

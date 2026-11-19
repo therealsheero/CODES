@@ -215,6 +215,10 @@
   "free_service_title": "এই সেৱা সম্পূৰ্ণ বিনামূলীয়া",
   "free_service_description": "কোনো ধৰণৰ ধন বা সেৱা মাচুল দিব নালাগে।",
   "other_services_badge": "একাধিক সেৱা",
-  "other_services_hint": "অতিৰিক্ত সেৱাসমূহ চাওক →"
+  "other_services_hint": "অতিৰিক্ত সেৱাসমূহ চাওক →",
+  "visitor_counter_loading": "দৰ্শনাৰ্থীৰ সংখ্যা লোড হৈ আছে...",
+"visitor_counter": "আপুনি {count}তম দৰ্শনাৰ্থী",
+"visitor_counter_error": "দৰ্শনাৰ্থীৰ সংখ্যা বৰ্তমান উপলব্ধ নহয়",
+"enrollment_help_note": "আধাৰ নামভৰ্তি কেৱল আধাৰ সেৱা কেন্দ্ৰ (ASK)-তহে কৰা হয়।"
 
 }

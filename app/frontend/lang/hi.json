@@ -192,5 +192,9 @@
 
 "free_service_description": "किसी भी प्रकार का भुगतान या सेवा शुल्क आवश्यक नहीं है।",
 "other_services_badge": "एकाधिक सेवाएँ",
-"other_services_hint": "अतिरिक्त सेवाएँ देखें →"
+"other_services_hint": "अतिरिक्त सेवाएँ देखें →",
+"visitor_counter_loading": "आगंतुकों की संख्या लोड हो रही है...",
+"visitor_counter": "आप {count}वें आगंतुक हैं",
+"visitor_counter_error": "आगंतुकों की संख्या अभी उपलब्ध नहीं है",
+"enrollment_help_note": "आधार नामांकन केवल आधार सेवा केंद्र (ASK) पर ही किया जाता है।"
 }

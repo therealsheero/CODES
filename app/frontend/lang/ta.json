@@ -215,6 +215,10 @@
   "free_service_title": "இந்தச் சேவை முற்றிலும் இலவசம்",
   "free_service_description": "எந்தக் கட்டணமும் அல்லது சேவைக் கட்டணமும் தேவையில்லை.",
   "other_services_badge": "பல சேவைகள்",
-  "other_services_hint": "கூடுதல் சேவைகளைப் பார்க்கவும் →"
+  "other_services_hint": "கூடுதல் சேவைகளைப் பார்க்கவும் →",
+  "visitor_counter_loading": "வருகையாளர்களின் எண்ணிக்கை ஏற்றப்படுகிறது...",
+"visitor_counter": "நீங்கள் {count}வது வருகையாளர்",
+"visitor_counter_error": "வருகையாளர் எண்ணிக்கை தற்போது கிடைக்கவில்லை",
+"enrollment_help_note": "ஆதார் பதிவு ஆதார் சேவை மையத்தில் (ASK) மட்டுமே செய்யப்படுகிறது."
 
 }

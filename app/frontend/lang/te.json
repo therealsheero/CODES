@@ -215,6 +215,10 @@
   "free_service_title": "ఈ సేవ పూర్తిగా ఉచితం",
   "free_service_description": "ఎటువంటి చెల్లింపు లేదా సేవా రుసుము అవసరం లేదు.",
   "other_services_badge": "బహుళ సేవలు",
-  "other_services_hint": "అదనపు సేవలను అన్వేషించండి →"
+  "other_services_hint": "అదనపు సేవలను అన్వేషించండి →",
+  "visitor_counter_loading": "సందర్శకుల సంఖ్య లోడ్ అవుతోంది...",
+"visitor_counter": "మీరు {count}వ సందర్శకులు",
+"visitor_counter_error": "సందర్శకుల సంఖ్య ప్రస్తుతం అందుబాటులో లేదు",
+"enrollment_help_note": "ఆధార్ నమోదు కేవలం ఆధార్ సేవా కేంద్రంలో (ASK) మాత్రమే చేయబడుతుంది."
 
 }

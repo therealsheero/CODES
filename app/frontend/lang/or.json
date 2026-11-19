@@ -215,6 +215,10 @@
   "free_service_title": "ଏହି ସେବା ସମ୍ପୂର୍ଣ୍ଣ ମାଗଣା",
   "free_service_description": "କୌଣସି ଦେୟ କିମ୍ବା ସେବା ଶୁଳ୍କ ଦେବାକୁ ପଡ଼ିବ ନାହିଁ।",
   "other_services_badge": "ଏକାଧିକ ସେବା",
-  "other_services_hint": "ଅତିରିକ୍ତ ସେବାଗୁଡ଼ିକ ଦେଖନ୍ତୁ →"
+  "other_services_hint": "ଅତିରିକ୍ତ ସେବାଗୁଡ଼ିକ ଦେଖନ୍ତୁ →",
+  "visitor_counter_loading": "ପରିଦର୍ଶକଙ୍କ ସଂଖ୍ୟା ଲୋଡ୍ ହେଉଛି...",
+"visitor_counter": "ଆପଣ {count}ତମ ପରିଦର୍ଶକ",
+"visitor_counter_error": "ପରିଦର୍ଶକଙ୍କ ସଂଖ୍ୟା ବର୍ତ୍ତମାନ ଉପଲବ୍ଧ ନାହିଁ",
+"enrollment_help_note": "ଆଧାର ନାମଲେଖା କେବଳ ଆଧାର ସେବା କେନ୍ଦ୍ର (ASK) ରେ କରାଯାଏ।"
 
 }

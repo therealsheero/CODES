@@ -187,6 +187,10 @@
   "free_service_title": "આ સેવા સંપૂર્ણપણે મફત છે",
   "free_service_description": "કોઈ ચુકવણી અથવા સેવા ચાર્જની જરૂર નથી.",
   "other_services_badge": "બહુવિધ સેવાઓ",
-  "other_services_hint": "વધારાની સેવાઓ જુઓ →"
+  "other_services_hint": "વધારાની સેવાઓ જુઓ →",
+  "visitor_counter_loading": "મુલાકાતીઓની સંખ્યા લોડ થઈ રહી છે...",
+"visitor_counter": "તમે {count}મા મુલાકાતી છો",
+"visitor_counter_error": "મુલાકાતીઓની સંખ્યા હાલમાં ઉપલબ્ધ નથી",
+"enrollment_help_note": "આધાર નોંધણી ફક્ત આધાર સેવા કેન્દ્ર (ASK) ખાતે જ કરવામાં આવે છે."
 
 }

@@ -215,6 +215,10 @@
   "free_service_title": "ഈ സേവനം പൂർണ്ണമായും സൗജന്യമാണ്",
   "free_service_description": "പണമോ സേവന നിരക്കോ നൽകേണ്ടതില്ല.",
   "other_services_badge": "ഒന്നിലധികം സേവനങ്ങൾ",
-  "other_services_hint": "കൂടുതൽ സേവനങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക →"
+  "other_services_hint": "കൂടുതൽ സേവനങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക →",
+  "visitor_counter_loading": "സന്ദർശകരുടെ എണ്ണം ലോഡ് ചെയ്യുന്നു...",
+"visitor_counter": "നിങ്ങൾ {count}-ാമത്തെ സന്ദർശകനാണ്",
+"visitor_counter_error": "സന്ദർശകരുടെ എണ്ണം നിലവിൽ ലഭ്യമല്ല",
+"enrollment_help_note": "ആധാർ എൻറോൾമെന്റ് ആധാർ സേവാ കേന്ദ്രത്തിൽ (ASK) മാത്രമാണ് നടത്തുന്നത്."
 
 }

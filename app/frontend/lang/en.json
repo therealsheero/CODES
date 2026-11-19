@@ -212,6 +212,10 @@
 
 "free_service_description": "No payment or service charge is required.",
 "other_services_badge": "Multiple Services",
-"other_services_hint": "Explore additional services →"
+"other_services_hint": "Explore additional services →",
+"visitor_counter_loading": "Loading visitor count...",
+"visitor_counter": "You are the {count} visitor",
+"visitor_counter_error": "Visitor count temporarily unavailable",
+"enrollment_help_note": "Enrolment is only done at Aadhaar Seva Kendra (ASK)."
 
 }

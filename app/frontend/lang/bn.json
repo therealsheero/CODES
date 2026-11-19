@@ -187,6 +187,10 @@
   "free_service_title": "এই পরিষেবা সম্পূর্ণ বিনামূল্যে",
   "free_service_description": "কোনো অর্থ বা পরিষেবা চার্জ দিতে হবে না।",
   "other_services_badge": "একাধিক পরিষেবা",
-  "other_services_hint": "অতিরিক্ত পরিষেবাগুলি দেখুন →"
+  "other_services_hint": "অতিরিক্ত পরিষেবাগুলি দেখুন →",
+  "visitor_counter_loading": "দর্শনার্থীর সংখ্যা লোড হচ্ছে...",
+"visitor_counter": "আপনি {count}তম দর্শনার্থী",
+"visitor_counter_error": "দর্শনার্থীর সংখ্যা বর্তমানে উপলব্ধ নয়",
+"enrollment_help_note": "আধার এনরোলমেন্ট শুধুমাত্র আধার সেবা কেন্দ্র (ASK)-এ করা হয়।"
 
 }

@@ -187,6 +187,10 @@
   "free_service_title": "ಈ ಸೇವೆಯು ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿದೆ",
   "free_service_description": "ಯಾವುದೇ ಪಾವತಿ ಅಥವಾ ಸೇವಾ ಶುಲ್ಕದ ಅಗತ್ಯವಿಲ್ಲ.",
   "other_services_badge": "ಬಹು ಸೇವೆಗಳು",
-  "other_services_hint": "ಹೆಚ್ಚುವರಿ ಸೇವೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ →"
+  "other_services_hint": "ಹೆಚ್ಚುವರಿ ಸೇವೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ →",
+  "visitor_counter_loading": "ಭೇಟಿದಾರರ ಸಂಖ್ಯೆಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...",
+"visitor_counter": "ನೀವು {count}ನೇ ಭೇಟಿದಾರರು",
+"visitor_counter_error": "ಭೇಟಿದಾರರ ಸಂಖ್ಯೆ ಪ್ರಸ್ತುತ ಲಭ್ಯವಿಲ್ಲ",
+"enrollment_help_note": "ಆಧಾರ್ ನೋಂದಣಿಯನ್ನು ಆಧಾರ್ ಸೇವಾ ಕೇಂದ್ರದಲ್ಲಿ (ASK) ಮಾತ್ರ ಮಾಡಲಾಗುತ್ತದೆ."
 
 }
