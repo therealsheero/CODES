@@ -1,0 +1,66 @@
+{
+  "bengaluru": [
+    "Karnataka",
+    "Puducherry",
+    "Tamil Nadu"
+  ],
+  "bhopal": [
+    "Madhya Pradesh"
+  ],
+  "chandigarh": [
+    "Chandigarh",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Ladakh",
+    "Punjab"
+  ],
+  "delhi": [
+    "Delhi",
+    "Rajasthan",
+    "Uttarakhand"
+  ],
+  "gujarat": [
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Gujarat"
+  ],
+  "guwahati": [
+    "Arunachal Pradesh",
+    "Assam",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Sikkim",
+    "Tripura"
+  ],
+  "hyderabad": [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Chhattisgarh",
+    "Telangana"
+  ],
+  "kerala": [
+    "Kerala",
+    "Lakshadweep"
+  ],
+  "kolkata": [
+    "West Bengal"
+  ],
+  "lucknow": [
+    "Uttar Pradesh"
+  ],
+  "mumbai": [
+    "Goa",
+    "Maharashtra"
+  ],
+  "odisha": [
+    "Odisha"
+  ],
+  "patna": [
+    "Bihar"
+  ],
+  "ranchi": [
+    "Jharkhand"
+  ]
+}

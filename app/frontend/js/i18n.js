@@ -142,6 +142,7 @@ await loadLanguage(lang);
 
 
 translatePage();
+window.dispatchEvent(new Event("languageChanged"));
 
 
 
@@ -183,15 +184,22 @@ localStorage.getItem(
 
 window.i18n = {
     setLanguage,
-    translatePage
+    translatePage,
+    getLanguage: () => currentLang
 };
 
 
 
-window.t = function (key, fallback = key) {
-    return getNestedValue(dictionary, key) ?? fallback;
-};
+window.t = function (key, fallback = key, params = {}) {
 
+    let value = getNestedValue(dictionary, key) ?? fallback;
+
+    Object.entries(params).forEach(([name, replacement]) => {
+        value = value.replaceAll(`{${name}}`, replacement);
+    });
+
+    return value;
+};
 
 
 

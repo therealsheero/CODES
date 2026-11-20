@@ -1218,6 +1218,38 @@ main{padding-bottom:32px}
     padding: 7px 9px;
     gap: 4px;
 }
+/* Visitor Counter */
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: fit-content;
+    max-width: calc(100% - 32px);
+
+    margin: 12px auto 10px;
+    padding: 9px 18px;
+
+    background: #eef4ff;
+    border: 1px solid #cbdcf5;
+    border-radius: 30px;
+
+    color: #174a91;
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow: 0 3px 10px #14305310;
+}
+
+.visitor-counter i {
+    font-size: 15px;
+}
+
+#visitorCounterText {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
 
 </style>
 </head>
@@ -1233,6 +1265,12 @@ main{padding-bottom:32px}
     <h2 data-i18n="hero_title">How can we help you today?</h2>
     <p data-i18n="hero_description">Choose the service you need to continue.</p>
   </section>
+  <div class="visitor-counter">
+    <i class="fa-solid fa-users" aria-hidden="true"></i>
+    <span id="visitorCounterText" data-i18n="visitor_counter_loading">
+        Loading visitor count...
+    </span>
+</div>
 
   <div class="language-panel">
     <label for="languageSelect" data-i18n="choose_language">Choose Language/ भाषा चुनें</label>
@@ -2381,6 +2419,8 @@ resetPressed(helpTopicsSection);
   };
 })();
 </script>
+
 <script src="./js/i18n.js"></script>
+<script src="./js/visitor-counter.js"></script>
 </body>
 </html>
