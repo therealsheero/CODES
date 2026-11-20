@@ -57,6 +57,96 @@ async function verifySession() {
     }
 }
 
+async function downloadFutureAppointments() {
+
+    const status = document.getElementById("statusMessage");
+    const buttons = document.querySelectorAll(".download-btn");
+
+    const token = getToken();
+
+    if (!token) {
+        redirectToLogin();
+        return;
+    }
+
+    buttons.forEach(button => button.disabled = true);
+
+    status.textContent =
+        "Preparing your future appointments export. Please wait...";
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE}/bulk-export-future-appointments`,
+            {
+                method: "GET",
+                headers: {
+                    "x-monitor-token": token
+                }
+            }
+        );
+
+        if (response.status === 401) {
+            redirectToLogin();
+            return;
+        }
+
+        if (!response.ok) {
+
+            let errorMessage = "Future appointments export failed.";
+
+            try {
+                const error = await response.json();
+
+                errorMessage =
+                    error.message || error.error || errorMessage;
+
+            } catch (_) {}
+
+            throw new Error(errorMessage);
+        }
+
+        const blob = await response.blob();
+
+        if (!blob.size) {
+            throw new Error("The downloaded file is empty.");
+        }
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download = "future_appointments.csv";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+        status.textContent =
+            "Future appointments CSV downloaded successfully.";
+
+    } catch (error) {
+
+        console.error(
+            "Future appointments download error:",
+            error
+        );
+
+        status.textContent = error.message;
+
+    } finally {
+
+        buttons.forEach(button => button.disabled = false);
+
+    }
+}
+
 async function downloadCSV(table) {
     const from = document.getElementById("filterFrom").value;
     const to = document.getElementById("filterTo").value;
@@ -161,6 +251,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         .addEventListener("click", () => {
             downloadCSV("physical_reference_entries");
         });
+
+    document
+    .getElementById("downloadFutureAppointmentsBtn")
+    .addEventListener("click", () => {
+        downloadFutureAppointments();
+    });
 
     await verifySession();
 

@@ -1624,6 +1624,220 @@ exports.getSlotStatus = async (req, res) => {
     }
 };
 
+exports.exportFutureAppointmentsCSV = async (req, res) => {
+    try {
+        const BATCH_SIZE = 1000;
+
+        // Calculate tomorrow using IST.
+        const tomorrow = new Date(
+            `${getISTDateString()}T00:00:00Z`
+        );
+
+        tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+
+        const fromDate = tomorrow.toISOString().slice(0, 10);
+
+        // Exact CSV column order.
+        const exportColumns = [
+            "mobile",
+            "aadhaar_last4",
+            "service_type",
+            "qrc",
+            "date",
+            "created_at",
+            "eid",
+            "sid",
+            "state"
+        ];
+
+        const databaseSchemas = [];
+
+        // STEP 1: Inspect every regional database.
+        for (const region of REGIONS) {
+            const pool = getPool(region);
+
+            if (!pool) {
+                throw new Error(
+                    `Database pool unavailable: ${region}`
+                );
+            }
+
+            const columns = await getTableColumns(
+                pool,
+                "tokens"
+            );
+
+            if (columns.length === 0) {
+                console.warn(
+                    `[Future Appointments] tokens table missing in ${region}`
+                );
+                continue;
+            }
+
+            if (!columns.includes("date")) {
+                throw new Error(
+                    `Date column missing in tokens table: ${region}`
+                );
+            }
+
+            if (!columns.includes("mode")) {
+                throw new Error(
+                    `Mode column missing in tokens table: ${region}`
+                );
+            }
+
+            databaseSchemas.push({
+                region,
+                pool,
+                columns
+            });
+        }
+
+        // STEP 2: Prepare exact CSV headers.
+        const headers = [
+            ...exportColumns,
+            "__export_region"
+        ];
+
+        const filename =
+            `future_appointments_from_${fromDate}.csv`;
+
+        res.setHeader(
+            "Content-Type",
+            "text/csv; charset=utf-8"
+        );
+
+        res.setHeader(
+            "Content-Disposition",
+            `attachment; filename="${filename}"`
+        );
+
+        res.setHeader(
+            "Cache-Control",
+            "no-store"
+        );
+
+        // UTF-8 BOM for Excel compatibility.
+        res.write("\uFEFF");
+
+        res.write(
+            headers.map(csvEscape).join(",") + "\r\n"
+        );
+
+        // STEP 3: Fetch future appointments region-wise.
+        for (const db of databaseSchemas) {
+
+            if (res.destroyed) return;
+
+            const selectColumns = exportColumns.map(column => {
+
+                if (db.columns.includes(column)) {
+                    return escapeIdentifier(column);
+                }
+
+                return `NULL AS ${escapeIdentifier(column)}`;
+            });
+
+            let offset = 0;
+
+            while (true) {
+
+                if (res.destroyed) return;
+
+                const sql = `
+                    SELECT
+                        ${selectColumns.join(", ")},
+                        ? AS __export_region
+
+                    FROM tokens
+
+                    WHERE date >= ?
+                    AND mode = 'A'
+
+                    ORDER BY date ASC
+
+                    LIMIT ? OFFSET ?
+                `;
+
+                const [rows] = await db.pool.execute(
+                    sql,
+                    [
+                        db.region,
+                        fromDate,
+                        BATCH_SIZE,
+                        offset
+                    ]
+                );
+
+                if (rows.length === 0) {
+                    break;
+                }
+
+                for (const row of rows) {
+
+                    const csvRow = headers.map(header =>
+                        csvEscape(row[header])
+                    ).join(",");
+
+                    if (!res.write(csvRow + "\r\n")) {
+
+                        await new Promise((resolve, reject) => {
+
+                            const cleanup = () => {
+                                res.off("drain", onDrain);
+                                res.off("close", onClose);
+                            };
+
+                            const onDrain = () => {
+                                cleanup();
+                                resolve();
+                            };
+
+                            const onClose = () => {
+                                cleanup();
+                                reject(
+                                    new Error("Client disconnected")
+                                );
+                            };
+
+                            res.once("drain", onDrain);
+                            res.once("close", onClose);
+
+                        });
+                    }
+                }
+
+                offset += rows.length;
+
+                if (rows.length < BATCH_SIZE) {
+                    break;
+                }
+            }
+        }
+
+        if (!res.destroyed) {
+            res.end();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "[Future Appointments Export Error]:",
+            error
+        );
+
+        if (!res.headersSent) {
+            return res.status(500).json({
+                error: "Future appointments export failed",
+                message: error.message
+            });
+        }
+
+        res.destroy(error);
+    }
+};
+
+
 
 
 exports.getVisitAnalysis = async (req, res) => {
